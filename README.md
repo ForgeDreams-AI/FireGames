@@ -119,6 +119,26 @@ full schema written for non-coders. Highlights:
 - **Reassign which pad is which skill:** change a gym's `eventId` in `map.json`.
 - **Change the pass threshold / theme / app name:** edit `config.json`.
 
+### Studio — a visual editor for events, steps & criticals (no JSON by hand)
+
+Open **`studio.html`** (e.g. `http://localhost:8080/studio.html`, or
+`https://<your-site>/studio.html`) for a form-based editor of the procedures —
+no code or JSON editing:
+
+- Loads the live `events.json`; pick any event on the left.
+- Edit event fields (name, badge, standard ref, **time limit**, RTO intro lines)
+  and every step: **type** (ordered / choice / inspection), the **step text**,
+  the **⚠ Critical (instant-fail)** flag, hint, how-to, and — for choice/
+  inspection — the answer **options** (first = correct). Add / remove / reorder
+  steps; add or delete events; handles side variants + the common tail.
+- **▶ Apply locally (preview):** see your edits in the game immediately **on this
+  device** (stored in the browser; doesn't affect anyone else). **⊘ Clear local
+  preview** reverts to the published file.
+- **⬇ Export events.json** (or **⧉ Copy JSON**): download the updated file. To
+  **publish for everyone**, that file replaces `src/data/events.json` in the repo
+  and is deployed (commit it, or hand it to whoever manages the site). Static
+  hosting has no server, so the editor can't auto-publish — export → commit.
+
 ---
 
 ## Swapping greybox art for real art

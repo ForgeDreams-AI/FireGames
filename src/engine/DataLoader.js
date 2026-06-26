@@ -22,10 +22,24 @@ export const DataLoader = {
     ]);
     return {
       config,
-      events: events.events || events,
+      events: localEventsOverride() || events.events || events,
       map,
       wildNPCs,
       assets
     };
   }
 };
+
+// The Studio editor can "Apply locally" a draft events.json to this device for
+// preview (localStorage). It overrides the file until cleared. Other devices /
+// the published site are unaffected until the file is committed.
+export const EVENTS_OVERRIDE_KEY = 'coreseven.eventsOverride.v1';
+function localEventsOverride() {
+  try {
+    const raw = localStorage.getItem(EVENTS_OVERRIDE_KEY);
+    if (!raw) return null;
+    const d = JSON.parse(raw);
+    const arr = d.events || d;
+    return Array.isArray(arr) && arr.length ? arr : null;
+  } catch (e) { return null; }
+}

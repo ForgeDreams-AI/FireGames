@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Core Seven — Studio (Events &amp; Steps)</title>
+  <link rel="stylesheet" href="./src/ui/styles.css" />
+  <style>
+    /* Studio-only layout (the game's theme variables come from styles.css). */
+    html, body { overflow: auto; height: auto; min-height: 100%; touch-action: auto; user-select: text; -webkit-user-select: text; }
+    body { background: var(--c-bg-deep); color: var(--c-text); font-family: var(--font-body); padding: 0; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 14px; }
+    h1 { font-family: var(--font-display); color: var(--c-accent); font-size: 26px; margin: 6px 0; }
+    .muted { color: var(--c-text-dim); font-size: 13px; }
+    .bar { position: sticky; top: 0; z-index: 5; background: var(--c-bg-deep); padding: 10px 0; display: flex; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    button.b { font-family: var(--font-body); font-size: 14px; background: var(--c-bg); color: var(--c-text); border: 1px solid rgba(255,199,44,0.3); border-radius: 10px; padding: 9px 13px; cursor: pointer; }
+    button.b.primary { background: var(--c-accent); color: var(--c-bg); font-weight: 700; border-color: var(--c-accent); }
+    button.b.danger { background: var(--c-bad); color: #fff; border-color: var(--c-bad); }
+    button.b.mini { padding: 5px 9px; font-size: 12px; }
+    .grid { display: grid; grid-template-columns: 220px 1fr; gap: 14px; margin-top: 12px; }
+    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    .evlist { display: flex; flex-direction: column; gap: 5px; }
+    .evlist button { text-align: left; }
+    .evlist button.sel { background: var(--c-panel); border-color: var(--c-accent); }
+    .card { background: var(--c-panel); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    label.f { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--c-text-dim); flex: 1; min-width: 140px; }
+    input.t, textarea.t, select.t { font-family: var(--font-body); font-size: 14px; background: var(--c-bg); color: var(--c-text); border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; padding: 8px; width: 100%; }
+    textarea.t { resize: vertical; min-height: 44px; }
+    .section-title { font-family: var(--font-display); color: var(--c-cream); font-size: 18px; margin: 14px 0 6px; }
+    .step { border-left: 3px solid rgba(255,255,255,0.12); }
+    .step.crit { border-left-color: var(--c-warn); }
+    .step-head { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+    .badge { font-size: 11px; padding: 2px 7px; border-radius: 10px; background: var(--c-bg); color: var(--c-text-dim); }
+    .badge.crit { background: var(--c-warn); color: #2a1c00; font-weight: 700; }
+    .chk { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--c-warn); cursor: pointer; }
+    .opt-row { display: flex; gap: 6px; align-items: center; margin: 4px 0; }
+    .opt-row .tag { font-size: 11px; color: var(--c-good); width: 56px; flex: 0 0 56px; }
+    .opt-row .tag.wrong { color: var(--c-text-dim); }
+    .vtabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0; }
+    .vtabs button.sel { background: var(--c-accent); color: var(--c-bg); }
+    .status { font-size: 13px; color: var(--c-good); margin-left: auto; align-self: center; }
+    .hide { display: none; }
+    .hint-note { font-size: 12px; color: var(--c-text-dim); margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>CORE SEVEN — Studio</h1>
+    <div class="muted">Edit events, steps, and critical (instant-fail) flags. Load the live data, make changes, then export <code>events.json</code>. No map or art editing here.</div>
+
+    <div class="bar">
+      <button class="b" id="btn-load">↻ Load live events.json</button>
+      <label class="b" style="cursor:pointer;">📂 Import file<input type="file" id="file" accept="application/json,.json" class="hide" /></label>
+      <button class="b primary" id="btn-export">⬇ Export events.json</button>
+      <button class="b" id="btn-copy">⧉ Copy JSON</button>
+      <button class="b" id="btn-apply">▶ Apply locally (preview)</button>
+      <button class="b" id="btn-clear">⊘ Clear local preview</button>
+      <button class="b" id="btn-add-event">＋ Add event</button>
+      <span class="status" id="status"></span>
+    </div>
+
+    <div class="grid">
+      <div>
+        <div class="muted" style="margin-bottom:6px;">Events</div>
+        <div class="evlist" id="evlist"></div>
+      </div>
+      <div id="editor"><div class="muted">Loading…</div></div>
+    </div>
+  </div>
+
+  <script>
+  // ---------- state ----------
+  const S = { events: [], sel: 0, variant: {} }; // variant: {eventIndex: currentVariantTab}
+  const $ = (id) => document.getElementById(id);
+  const el = (t, c, txt) => { const e = document.createElement(t); if (c) e.className = c; if (txt != null) e.textContent = txt; return e; };
+  function setStatus(msg, ok) { const s = $('status'); s.textContent = msg; s.style.color = ok === false ? 'var(--c-bad)' : 'var(--c-good)'; if (msg) setTimeout(() => { if (s.textContent === msg) s.textContent = ''; }, 4000); }
+
+  // ---------- load / import / export ----------
+  async function loadLive() {
+    try {
+      const res = await fetch('./src/data/events.json', { cache: 'no-cache' });
+      const data = await res.json();
+      S.events = (data.events || data);
+      S.sel = 0; render();
+      setStatus('Loaded ' + S.events.length + ' events.');
+    } catch (e) { setStatus('Could not load events.json: ' + e.message, false); }
+  }
+  function importFile(file) {
+    const r = new FileReader();
+    r.onload = () => { try { const d = JSON.parse(r.result); S.events = d.events || d; S.sel = 0; render(); setStatus('Imported ' + S.events.length + ' events.'); } catch (e) { setStatus('Invalid JSON: ' + e.message, false); } };
+    r.readAsText(file);
+  }
+  function serialize() { return JSON.stringify({ events: clean(S.events) }, null, 2); }
+  function exportFile() {
+    const blob = new Blob([serialize()], { type: 'application/json' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'events.json'; a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    setStatus('Exported events.json — commit it to src/data/ to publish.');
+  }
+  async function copyJSON() { try { await navigator.clipboard.writeText(serialize()); setStatus('JSON copied to clipboard.'); } catch (e) { setStatus('Copy failed — use Export instead.', false); } }
+
+  // renumber order fields + drop empty option arrays on ordered steps
+  function clean(events) {
+    return events.map(ev => {
+      const e = JSON.parse(JSON.stringify(ev));
+      const fix = (arr) => (arr || []).map((s, i) => {
+        s.order = i + 1;
+        s.type = s.type || 'ordered';
+        s.critical = !!s.critical;
+        if (s.type === 'ordered') delete s.options;
+        else s.options = (s.options || []).filter(o => o.trim() !== '');
+        if (!s.howto) s.howto = { default: '' };
+        return s;
+      });
+      e.sharedSteps = fix(e.sharedSteps);
+      if (e.variantSteps) Object.keys(e.variantSteps).forEach(v => e.variantSteps[v] = fix(e.variantSteps[v]));
+      if (e.commonTail) e.commonTail = fix(e.commonTail);
+      return e;
+    });
+  }
+
+  // ---------- render ----------
+  function render() { renderList(); renderEditor(); }
+
+  function renderList() {
+    const box = $('evlist'); box.innerHTML = '';
+    S.events.forEach((ev, i) => {
+      const crit = countCriticals(ev);
+      const b = el('button', 'b' + (i === S.sel ? ' sel' : ''), '');
+      b.appendChild(el('div', null, ev.name || ev.id || ('event ' + i)));
+      const meta = el('div', 'muted', stepCount(ev) + ' steps · ' + crit + ' critical'); meta.style.fontSize = '11px';
+      b.appendChild(meta);
+      b.onclick = () => { S.sel = i; render(); };
+      box.appendChild(b);
+    });
+  }
+
+  function countCriticals(ev) {
+    let n = 0; allSteps(ev).forEach(s => { if (s.critical) n++; }); return n;
+  }
+  function stepCount(ev) { return allSteps(ev).length; }
+  function allSteps(ev) {
+    let a = (ev.sharedSteps || []).slice();
+    if (ev.variantSteps) Object.values(ev.variantSteps).forEach(v => a = a.concat(v));
+    if (ev.commonTail) a = a.concat(ev.commonTail);
+    return a;
+  }
+
+  function field(labelText, value, onInput, multiline) {
+    const l = el('label', 'f'); l.appendChild(el('span', null, labelText));
+    const i = el(multiline ? 'textarea' : 'input', 't'); i.value = value == null ? '' : value;
+    i.addEventListener('input', () => onInput(i.value));
+    l.appendChild(i); return l;
+  }
+
+  function renderEditor() {
+    const ev = S.events[S.sel];
+    const box = $('editor'); box.innerHTML = '';
+    if (!ev) { box.appendChild(el('div', 'muted', 'No event selected.')); return; }
+
+    // event-level fields
+    const head = el('div', 'card');
+    const r1 = el('div', 'row');
+    r1.appendChild(field('id', ev.id, v => ev.id = v));
+    r1.appendChild(field('name', ev.name, v => { ev.name = v; renderList(); }));
+    r1.appendChild(field('badgeName', ev.badgeName, v => ev.badgeName = v));
+    head.appendChild(r1);
+    const r2 = el('div', 'row');
+    r2.appendChild(field('standardRef', ev.standardRef, v => ev.standardRef = v));
+    r2.appendChild(field('timeLimitSeconds', ev.timeLimitSeconds, v => ev.timeLimitSeconds = parseInt(v) || 0));
+    r2.appendChild(field('variants (comma-sep)', (ev.variants || ['default']).join(','), v => { ev.variants = v.split(',').map(s => s.trim()).filter(Boolean); if (!ev.variants.length) ev.variants = ['default']; renderEditor(); }));
+    head.appendChild(r2);
+    head.appendChild(field('rtoIntro (RTO encounter line)', ev.rtoIntro, v => ev.rtoIntro = v, true));
+    head.appendChild(field('rtoModePrompt (Drill/Graded prompt)', ev.rtoModePrompt, v => ev.rtoModePrompt = v, true));
+    const delEv = el('button', 'b danger mini', '🗑 Delete this event');
+    delEv.onclick = () => { if (confirm('Delete event "' + (ev.name || ev.id) + '"?')) { S.events.splice(S.sel, 1); S.sel = Math.max(0, S.sel - 1); render(); } };
+    head.appendChild(el('div', null, '')).appendChild(delEv);
+    box.appendChild(head);
+
+    // step sections: sharedSteps, variantSteps[v], commonTail
+    section(box, ev, 'Shared steps', ev.sharedSteps || (ev.sharedSteps = []), 'sharedSteps');
+
+    const variants = (ev.variants || ['default']).filter(v => v !== 'default');
+    if (variants.length) {
+      if (!ev.variantSteps) ev.variantSteps = {};
+      const cur = S.variant[S.sel] || variants[0];
+      S.variant[S.sel] = cur;
+      const tabs = el('div', 'vtabs');
+      variants.forEach(v => { const b = el('button', 'b mini' + (v === cur ? ' sel' : ''), v); b.onclick = () => { S.variant[S.sel] = v; renderEditor(); }; tabs.appendChild(b); });
+      const wrap = el('div', 'card');
+      wrap.appendChild(el('div', 'section-title', 'Variant steps'));
+      wrap.appendChild(tabs);
+      if (!ev.variantSteps[cur]) ev.variantSteps[cur] = [];
+      stepsInto(wrap, ev, ev.variantSteps[cur], 'variant:' + cur);
+      box.appendChild(wrap);
+    }
+
+    if (ev.commonTail || hasTail(ev)) section(box, ev, 'Common tail (after variants rejoin)', ev.commonTail || (ev.commonTail = []), 'commonTail');
+  }
+  function hasTail(ev) { return Array.isArray(ev.commonTail); }
+
+  function section(box, ev, title, arr, kind) {
+    const wrap = el('div', 'card');
+    wrap.appendChild(el('div', 'section-title', title));
+    stepsInto(wrap, ev, arr, kind);
+    box.appendChild(wrap);
+  }
+
+  function stepsInto(wrap, ev, arr, kind) {
+    arr.forEach((s, i) => wrap.appendChild(stepCard(ev, arr, s, i, kind)));
+    const add = el('button', 'b mini', '＋ Add step');
+    add.onclick = () => { arr.push({ order: arr.length + 1, type: 'ordered', step: '', critical: false, hint: '', howto: { default: '' } }); renderEditor(); };
+    wrap.appendChild(add);
+  }
+
+  function stepCard(ev, arr, s, i, kind) {
+    const c = el('div', 'card step' + (s.critical ? ' crit' : ''));
+    const head = el('div', 'step-head');
+    const left = el('div', 'row');
+    left.appendChild(el('span', 'badge' + (s.critical ? ' crit' : ''), '#' + (i + 1)));
+    // type
+    const sel = el('select', 't'); sel.style.width = '130px';
+    ['ordered', 'choice', 'inspection'].forEach(t => { const o = el('option', null, t); o.value = t; if ((s.type || 'ordered') === t) o.selected = true; sel.appendChild(o); });
+    sel.onchange = () => { s.type = sel.value; if (s.type !== 'ordered' && !s.options) s.options = ['', '', '', '']; renderEditor(); };
+    left.appendChild(sel);
+    // critical
+    const lbl = el('label', 'chk'); const cb = el('input'); cb.type = 'checkbox'; cb.checked = !!s.critical;
+    cb.onchange = () => { s.critical = cb.checked; renderEditor(); };
+    lbl.appendChild(cb); lbl.appendChild(el('span', null, '⚠ Critical (instant fail)'));
+    left.appendChild(lbl);
+    head.appendChild(left);
+    // move/remove
+    const ctrl = el('div', 'row');
+    const up = el('button', 'b mini', '↑'); up.onclick = () => { if (i > 0) { arr.splice(i - 1, 0, arr.splice(i, 1)[0]); renderEditor(); } };
+    const dn = el('button', 'b mini', '↓'); dn.onclick = () => { if (i < arr.length - 1) { arr.splice(i + 1, 0, arr.splice(i, 1)[0]); renderEditor(); } };
+    const rm = el('button', 'b mini danger', '✕'); rm.onclick = () => { arr.splice(i, 1); renderList(); renderEditor(); };
+    ctrl.appendChild(up); ctrl.appendChild(dn); ctrl.appendChild(rm);
+    head.appendChild(ctrl);
+    c.appendChild(head);
+
+    c.appendChild(field('Step (the graded action)', s.step, v => { s.step = v; }, true));
+    c.appendChild(field('Hint (one-line cue, optional)', s.hint, v => s.hint = v));
+    if (!s.howto) s.howto = { default: '' };
+    c.appendChild(field('How-to / teaching (optional)', s.howto.default, v => s.howto.default = v, true));
+    // variant-specific howto for variant steps
+    if (kind && kind.indexOf('variant:') === 0) {
+      const vk = kind.split(':')[1];
+      c.appendChild(field('How-to for ' + vk + ' (optional)', s.howto[vk] || '', v => s.howto[vk] = v, true));
+    }
+
+    if ((s.type || 'ordered') !== 'ordered') {
+      const ow = el('div', null);
+      ow.appendChild(el('div', 'hint-note', 'Answer options — the FIRST one is the correct answer (the game shuffles them):'));
+      if (!s.options) s.options = ['', '', '', ''];
+      s.options.forEach((opt, oi) => {
+        const row = el('div', 'opt-row');
+        row.appendChild(el('span', 'tag' + (oi === 0 ? '' : ' wrong'), oi === 0 ? '✔ correct' : 'distractor'));
+        const inp = el('input', 't'); inp.value = opt; inp.addEventListener('input', () => s.options[oi] = inp.value);
+        row.appendChild(inp);
+        const x = el('button', 'b mini danger', '✕'); x.onclick = () => { s.options.splice(oi, 1); renderEditor(); };
+        row.appendChild(x);
+        ow.appendChild(row);
+      });
+      const addOpt = el('button', 'b mini', '＋ Add option'); addOpt.onclick = () => { s.options.push(''); renderEditor(); };
+      ow.appendChild(addOpt);
+      c.appendChild(ow);
+    } else {
+      c.appendChild(el('div', 'hint-note', 'Ordered step — the game builds the multiple-choice options from the other steps automatically.'));
+    }
+    return c;
+  }
+
+  function addEvent() {
+    S.events.push({ id: 'new_event_' + (S.events.length + 1), name: 'New Event', badgeName: 'New Badge', standardRef: '', timeLimitSeconds: 60, variants: ['default'], sharedSteps: [{ order: 1, type: 'ordered', step: 'First step', critical: false, hint: '', howto: { default: '' } }], rtoIntro: '', rtoModePrompt: '' });
+    S.sel = S.events.length - 1; render();
+  }
+
+  // ---------- wire ----------
+  const OVERRIDE_KEY = 'coreseven.eventsOverride.v1';
+  function applyLocal() {
+    try { localStorage.setItem(OVERRIDE_KEY, serialize()); setStatus('Applied to THIS device. Open index.html to preview; click Clear to revert.'); }
+    catch (e) { setStatus('Could not save preview (storage full?).', false); }
+  }
+  function clearLocal() { localStorage.removeItem(OVERRIDE_KEY); setStatus('Local preview cleared — the game uses the published events.json again.'); }
+
+  $('btn-load').onclick = loadLive;
+  $('btn-export').onclick = exportFile;
+  $('btn-copy').onclick = copyJSON;
+  $('btn-apply').onclick = applyLocal;
+  $('btn-clear').onclick = clearLocal;
+  $('btn-add-event').onclick = addEvent;
+  $('file').addEventListener('change', e => { if (e.target.files[0]) importFile(e.target.files[0]); });
+  loadLive();
+  </script>
+</body>
+</html>
