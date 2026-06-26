@@ -604,15 +604,7 @@ export class UI {
     const wrap = this.el('div');
     wrap.appendChild(this.header('Settings', 'Saved on this device'));
     const menu = this.el('div', 'cs-menu');
-    // theme toggle
-    const themes = this.theme.names();
-    menu.appendChild(this.el('div', 'cs-sub', 'Theme'));
-    themes.forEach(tn => {
-      const active = this.theme.name === tn;
-      menu.appendChild(this.button((active ? '● ' : '○ ') + (this.config.themes[tn].name || tn), () => {
-        this.theme.apply(tn); this.storage.setSetting('theme', tn); panel.close(); this.openSettings();
-      }, active ? 'primary' : ''));
-    });
+    menu.appendChild(this.button('🎨 Graphics', () => { panel.close(); this.openGraphics(); }, 'primary'));
     menu.appendChild(this.el('div', 'cs-sub', 'Progress'));
     menu.appendChild(this.button('🗑 Reset all progress', () => this._confirmReset(), 'danger'));
     menu.appendChild(this.button('Close', () => panel.close(), 'ghost'));
@@ -620,15 +612,129 @@ export class UI {
     var panel = this._openPanel(wrap, { dim: true });
   }
 
+  _refresh(opts) { if (this.refreshGraphics) this.refreshGraphics(opts || {}); }
+
+  // ================= GRAPHICS CUSTOMIZATION =================
+  openGraphics() {
+    const wrap = this.el('div', 'cs-graphics');
+    wrap.appendChild(this.header('Graphics', 'Theme · Colors · Art · Display'));
+    const reopen = () => { panel.close(); this.openGraphics(); };
+
+    // ---- Theme ----
+    wrap.appendChild(this.el('div', 'cs-sub', 'Theme'));
+    const trow = this.el('div', 'cs-row');
+    this.theme.names().forEach(tn => {
+      const active = this.theme.name === tn;
+      trow.appendChild(this.button((active ? '● ' : '○ ') + (this.config.themes[tn].name || tn), () => {
+        this.storage.setSetting('theme', tn); this._refresh({ rebuild: true }); reopen();
+      }, active ? 'primary chip' : 'chip'));
+    });
+    wrap.appendChild(trow);
+
+    // ---- Colors ----
+    wrap.appendChild(this.el('div', 'cs-sub', 'Colors (this theme)'));
+    const themeName = this.theme.name;
+    const base = this.theme.baseColors(themeName);
+    const grid = this.el('div', 'cs-color-grid');
+    this.theme.colorKeys().forEach(key => {
+      const cur = this.theme.hex(key);
+      const cell = this.el('label', 'cs-color-cell');
+      const sw = this.el('input', 'cs-color-input'); sw.type = 'color'; sw.value = toHex6(cur);
+      sw.addEventListener('input', (e) => { // live DOM update
+        this.storage.setColorOverride(themeName, key, e.target.value);
+        this.theme.setOverrides(this.storage.colorOverrides()); this.theme.apply(themeName);
+      });
+      sw.addEventListener('change', () => this._refresh({ rebuild: true })); // commit -> rebuild map
+      cell.appendChild(sw);
+      cell.appendChild(this.el('span', 'cs-color-name', key));
+      grid.appendChild(cell);
+    });
+    wrap.appendChild(grid);
+    wrap.appendChild(this.button('↺ Reset colors to ' + (this.config.themes[themeName].name || themeName) + ' defaults', () => {
+      this.storage.clearColorOverrides(themeName); this._refresh({ rebuild: true }); reopen();
+    }, 'ghost'));
+
+    // ---- Replace Art ----
+    wrap.appendChild(this.el('div', 'cs-sub', 'Replace art (swap greybox for your own images)'));
+    const custom = this.storage.customArt();
+    const artList = this.el('div', 'cs-art-list');
+    forEachAssetEntry(this.data.assets, (key, entry, group) => {
+      const row = this.el('div', 'cs-art-row');
+      const thumb = this.el('div', 'cs-art-thumb');
+      if (custom[key]) { const im = this.el('img', 'cs-art-img'); im.src = custom[key]; thumb.appendChild(im); }
+      else { thumb.style.background = this.theme.hex(entry.colorKey || 'ground'); }
+      row.appendChild(thumb);
+      const meta = this.el('div', 'cs-art-meta');
+      meta.appendChild(this.el('div', 'cs-art-key', key));
+      meta.appendChild(this.el('div', 'cs-art-sub', group + (custom[key] ? ' · custom' : ' · greybox')));
+      row.appendChild(meta);
+      const fileLabel = this.el('label', 'cs-btn chip cs-art-upload', custom[key] ? 'Change' : 'Upload');
+      const file = this.el('input'); file.type = 'file'; file.accept = 'image/*'; file.style.display = 'none';
+      file.addEventListener('change', (e) => this._uploadArt(key, e.target.files && e.target.files[0], reopen));
+      fileLabel.appendChild(file);
+      row.appendChild(fileLabel);
+      if (custom[key]) row.appendChild(this.button('✕', () => { this.storage.removeCustomArt(key); this._refresh({ rebuild: true }); reopen(); }, 'mini'));
+      artList.appendChild(row);
+    });
+    wrap.appendChild(artList);
+    if (Object.keys(custom).length) wrap.appendChild(this.button('↺ Reset all art to greybox', () => { this.storage.clearCustomArt(); this._refresh({ rebuild: true }); reopen(); }, 'ghost'));
+
+    // ---- Display ----
+    const d = this.storage.display();
+    wrap.appendChild(this.el('div', 'cs-sub', 'Display'));
+    wrap.appendChild(this._chipChoice('Zoom', [['0.75', 0.75], ['1×', 1], ['1.25', 1.25], ['1.5', 1.5]], d.zoom, (v) => { this.storage.setDisplay('zoom', v); this._refresh(); reopen(); }));
+    wrap.appendChild(this._chipChoice('Text size', [['Small', 'sm'], ['Normal', 'md'], ['Large', 'lg']], d.font, (v) => { this.storage.setDisplay('font', v); this._refresh(); reopen(); }));
+    const toggles = this.el('div', 'cs-row');
+    toggles.appendChild(this.button((d.reducedMotion ? '☑' : '☐') + ' Reduced motion', () => { this.storage.setDisplay('reducedMotion', !d.reducedMotion); this._refresh(); reopen(); }, 'chip'));
+    toggles.appendChild(this.button((d.useGreybox ? '☑' : '☐') + ' Force greybox', () => { this.storage.setDisplay('useGreybox', !d.useGreybox); this._refresh({ rebuild: true }); reopen(); }, 'chip'));
+    toggles.appendChild(this.button('⛶ Fullscreen', () => this._toggleFullscreen(), 'chip'));
+    wrap.appendChild(toggles);
+
+    wrap.appendChild(this.button('Close', () => panel.close(), 'primary'));
+    var panel = this._openPanel(wrap, { panelClass: 'reference-panel' });
+  }
+
+  _chipChoice(label, options, current, onPick) {
+    const box = this.el('div', 'cs-choice');
+    box.appendChild(this.el('div', 'cs-choice-label', label));
+    const row = this.el('div', 'cs-row');
+    options.forEach(([txt, val]) => {
+      const active = String(current) === String(val);
+      row.appendChild(this.button(txt, () => onPick(val), active ? 'primary chip' : 'chip'));
+    });
+    box.appendChild(row);
+    return box;
+  }
+
+  _uploadArt(key, file, done) {
+    if (!file) return;
+    if (file.size > 600 * 1024) { this.toast('Image too large (keep under ~600 KB).', 'warn'); return; }
+    const reader = new FileReader();
+    reader.onload = () => {
+      try { this.storage.setCustomArt(key, reader.result); this._refresh({ rebuild: true }); this.toast('Art replaced: ' + key, 'good'); done && done(); }
+      catch (e) { this.toast('Could not save image (storage full?).', 'warn'); }
+    };
+    reader.onerror = () => this.toast('Could not read that file.', 'warn');
+    reader.readAsDataURL(file);
+  }
+
+  _toggleFullscreen() {
+    try {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else (document.documentElement.requestFullscreen && document.documentElement.requestFullscreen());
+    } catch (e) { this.toast('Fullscreen not available here.', 'warn'); }
+  }
+
   _confirmReset() {
     const wrap = this.el('div');
-    wrap.appendChild(this.header('Reset progress?', 'Clears all badges + settings on this device'));
+    wrap.appendChild(this.header('Reset progress?', 'Clears all badges, custom colors, art + settings on this device'));
     const menu = this.el('div', 'cs-menu');
     menu.appendChild(this.button('Yes, wipe everything', () => {
       this.storage.reset();
-      const def = this.config.theme;
-      this.theme.apply(def);
+      this.theme.setOverrides({});
+      this.storage.setSetting('theme', this.config.theme);
       panel.close();
+      this._refresh({ rebuild: true });
       this.toast('Progress reset.', 'warn');
     }, 'danger'));
     menu.appendChild(this.button('Cancel', () => panel.close(), 'ghost'));
@@ -719,3 +825,17 @@ function formatTime(sec) { const m = Math.floor(sec / 60), s = sec % 60; return 
 function truncate(s, n) { n = n || 48; return s.length > n ? s.slice(0, n - 1) + '…' : s; }
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 function pick(a) { return a && a.length ? a[Math.floor(Math.random() * a.length)] : null; }
+function forEachAssetEntry(assets, fn) {
+  ['tiles', 'sprites'].forEach(group => {
+    const set = (assets && assets[group]) || {};
+    Object.keys(set).forEach(k => fn(k, set[k], group));
+  });
+}
+// normalize a CSS color to a 6-digit #rrggbb that <input type=color> accepts
+function toHex6(hex) {
+  if (!hex) return '#000000';
+  let h = hex.trim();
+  if (h[0] !== '#') h = '#' + h;
+  if (h.length === 4) h = '#' + h[1] + h[1] + h[2] + h[2] + h[3] + h[3];
+  return /^#[0-9a-fA-F]{6}$/.test(h) ? h : '#000000';
+}

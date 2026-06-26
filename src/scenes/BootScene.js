@@ -1,7 +1,8 @@
 // BootScene.js — builds textures for every key in the asset manifest.
-// If a manifest entry has a non-empty "file", it is loaded as real art.
-// Otherwise a GREYBOX texture is generated from the entry's spec + theme color.
-// This is the art-swap layer: no engine code changes when real PNGs are added.
+// Source priority per key: user-uploaded custom art (localStorage data URL) >
+// manifest "file" (real PNG) > generated GREYBOX texture. The "Force greybox"
+// display option overrides all and always draws greybox. This is the art-swap
+// layer: no engine code changes when real art is added or replaced in-app.
 
 export class BootScene extends Phaser.Scene {
   constructor() { super('Boot'); }
@@ -10,26 +11,34 @@ export class BootScene extends Phaser.Scene {
     this.theme = this.registry.get('theme');
     this.assets = this.registry.get('data').assets;
     this.tileSize = this.registry.get('data').map.tileSize || 32;
+    const storage = this.registry.get('storage');
+    this.forceGreybox = storage.display().useGreybox;
+    this.customArt = this.forceGreybox ? {} : storage.customArt();
+    this._realKeys = {};
 
-    const base = ''; // relative
-    const queueFile = (key, entry) => {
-      if (entry.file && entry.file.trim()) {
-        this._realKeys = this._realKeys || {};
+    // Clear any textures left over from a prior Boot (graphics refresh).
+    forEachAsset(this.assets, (key) => { if (this.textures.exists(key) && key !== '__DEFAULT' && key !== '__MISSING') this.textures.remove(key); });
+
+    const base = '';
+    forEachAsset(this.assets, (key, entry) => {
+      if (this.forceGreybox) return;
+      if (this.customArt[key]) {
+        // uploaded art (data URL) — load via the image loader
+        this._realKeys[key] = true;
+        this.load.image(key, this.customArt[key]);
+      } else if (entry.file && entry.file.trim()) {
         this._realKeys[key] = true;
         this.load.image(key, base + 'src/assets/' + entry.file);
       }
-    };
-    forEachAsset(this.assets, (key, entry) => queueFile(key, entry));
-
-    // If a real file 404s, fall back to greybox for that key.
-    this.load.on('loaderror', (file) => {
-      if (this._realKeys) delete this._realKeys[file.key];
     });
+
+    // If a real/custom image fails, fall back to greybox for that key.
+    this.load.on('loaderror', (file) => { delete this._realKeys[file.key]; });
   }
 
   create() {
     forEachAsset(this.assets, (key, entry, group) => {
-      const haveReal = this._realKeys && this._realKeys[key] && this.textures.exists(key);
+      const haveReal = this._realKeys[key] && this.textures.exists(key);
       if (!haveReal) this._greybox(key, entry, group);
     });
     this.scene.start('Overworld');

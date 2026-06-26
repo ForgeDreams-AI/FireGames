@@ -31,6 +31,7 @@ export class OverworldScene extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, worldW, worldH);
     this.cameras.main.startFollow(this.player, true, 0.15, 0.15);
     this.cameras.main.setBackgroundColor(this.theme.hex('bgDeep'));
+    this._applyDisplay();
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.keyAction = this.input.keyboard.addKeys({ enter: Phaser.Input.Keyboard.KeyCodes.ENTER, space: Phaser.Input.Keyboard.KeyCodes.SPACE });
@@ -48,10 +49,18 @@ export class OverworldScene extends Phaser.Scene {
       this.registry.set('activeScene', this);
       this.touchDir = null; this.moving = false;
       this.input.enabled = true;
-      this.cameras.main.fadeIn(170);
+      this._applyDisplay();
+      this.cameras.main.fadeIn(this._fadeMs);
     });
 
     this.ui.onOverworldReady && this.ui.onOverworldReady();
+  }
+
+  // Camera zoom + reduced-motion from the Graphics display settings.
+  _applyDisplay() {
+    const d = this.registry.get('storage').display();
+    this.cameras.main.setZoom(d.zoom || 1);
+    this._fadeMs = d.reducedMotion ? 0 : 170;
   }
 
   // ----- rendering -----
@@ -177,12 +186,14 @@ export class OverworldScene extends Phaser.Scene {
     this._transitioning = true;
     this.input.enabled = false;
     this.touchDir = null;
-    this.cameras.main.fadeOut(170);
-    this.cameras.main.once('camerafadeoutcomplete', () => {
+    const go = () => {
       this._transitioning = false;
       this.scene.launch('Interior', { gymId: gym.id });
       this.scene.sleep();
-    });
+    };
+    if (this._fadeMs <= 0) { go(); return; }
+    this.cameras.main.fadeOut(this._fadeMs);
+    this.cameras.main.once('camerafadeoutcomplete', go);
   }
 
   isGymUnlocked(gym) {

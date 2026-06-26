@@ -136,9 +136,41 @@ game's sprites, fonts, or sounds.
 
 The UI chrome has two themes read from `config.json`: **`forgedreams`** (navy
 `#14213D`, gold `#FFC72C`, sage + cream; Cormorant Garamond + DM Sans) and a
-**`neutral`** greybox theme. Switch in-game under **Settings**, or set the
-default via `config.json → "theme"`. Web fonts load with safe system fallbacks
-(so it still looks right offline).
+**`neutral`** greybox theme. Switch in-game under **Settings → Graphics**, or set
+the default via `config.json → "theme"`. Web fonts load with safe system
+fallbacks (so it still looks right offline).
+
+### In-game graphics customization (Settings → Graphics)
+
+No coding needed — every option saves to this device's `localStorage`:
+
+- **Theme** — switch ForgeDreams / Greybox.
+- **Colors** — a color picker for every palette color; changes apply live to the
+  UI and the map. "Reset colors" restores the theme defaults.
+- **Replace art** — upload your own image for any sprite/tile key (player, RTO,
+  NPC, props, ground, walls…). Stored on the device and used instead of greybox,
+  no file editing. "Reset" per item or "Reset all art" reverts.
+- **Display** — map **zoom**, **text size**, **reduced motion** (skips
+  transitions/animations), **force greybox** (ignore all art, draw greybox), and
+  a **fullscreen** toggle.
+
+This complements the file-based swap layer above: designers can drop real PNGs
+into `src/assets/` + the manifest for a permanent swap, while
+recruits/instructors can also override art and colors per device from inside the
+app.
+
+## Gym interiors
+
+Each gym is a real **interior room** the recruit enters (not just a pad). Walking
+onto a gym door fades into a themed interior with study NPC(s), the RTO at the
+back, props, an exit door, and a **signage board** (gym name, badge status, time
+limit, 65% threshold). A study NPC runs a **guided walk-through** of the event
+step-by-step (Next, critical-step flags, graceful empty `howto`/`hint`;
+side-variant events pick the side first). Approaching the **RTO** plays an
+encounter intro + **Drill / Graded** prompt, then the battle. Every interior —
+its tile map and NPC/RTO/prop/exit/signage placements — lives in `map.json` under
+each gym's `interior` object, and the RTO's lines live in `events.json`
+(`rtoIntro` / `rtoModePrompt`). Move or retheme anything by editing JSON only.
 
 ---
 

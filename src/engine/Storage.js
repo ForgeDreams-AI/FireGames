@@ -66,6 +66,45 @@ export const Storage = {
     write(s);
   },
 
+  // ---- graphics customization ----
+  colorOverrides() { return read().settings.colorOverrides || {}; },
+  setColorOverride(theme, key, hex) {
+    const s = read();
+    const ov = s.settings.colorOverrides || (s.settings.colorOverrides = {});
+    (ov[theme] || (ov[theme] = {}))[key] = hex;
+    write(s);
+  },
+  clearColorOverrides(theme) {
+    const s = read();
+    if (s.settings.colorOverrides) { delete s.settings.colorOverrides[theme]; write(s); }
+  },
+
+  customArt() { return read().settings.customArt || {}; },
+  setCustomArt(assetKey, dataUrl) {
+    const s = read();
+    const a = s.settings.customArt || (s.settings.customArt = {});
+    a[assetKey] = dataUrl;
+    write(s);
+  },
+  removeCustomArt(assetKey) {
+    const s = read();
+    if (s.settings.customArt) { delete s.settings.customArt[assetKey]; write(s); }
+  },
+  clearCustomArt() {
+    const s = read();
+    delete s.settings.customArt; write(s);
+  },
+
+  display() {
+    return Object.assign({ zoom: 1, font: 'md', reducedMotion: false, useGreybox: false }, read().settings.display || {});
+  },
+  setDisplay(key, value) {
+    const s = read();
+    const d = s.settings.display || (s.settings.display = {});
+    d[key] = value;
+    write(s);
+  },
+
   reset() {
     try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ }
   }

@@ -21,10 +21,13 @@ async function main() {
     return;
   }
 
-  // Theme: stored override > config default
+  // Theme: stored override > config default, plus per-device color overrides.
   const theme = new Theme(data.config);
+  theme.setOverrides(Storage.colorOverrides());
   const savedTheme = Storage.getSetting('theme', data.config.theme);
   theme.apply(theme.names().indexOf(savedTheme) >= 0 ? savedTheme : data.config.theme);
+
+  applyDisplaySettings();  // DOM-level display options (font size, reduced motion)
 
   document.title = data.config.appName || 'Core Seven';
 
@@ -57,12 +60,37 @@ async function main() {
   // hide loading once Boot starts Overworld
   ui.onOverworldReady = () => { if (loading) loading.style.display = 'none'; };
 
+  // Graphics-refresh hook the Settings → Graphics panel calls after a change.
+  //  - live: re-apply theme (DOM colors) + DOM display options + active camera.
+  //  - rebuild: also restart Boot so Phaser textures regenerate (color/art/greybox).
+  ui.refreshGraphics = (opts) => {
+    theme.setOverrides(Storage.colorOverrides());
+    theme.apply(Storage.getSetting('theme', data.config.theme));
+    applyDisplaySettings();
+    const d = Storage.display();
+    const cur = active(game);
+    if (cur && cur.cameras) { cur.cameras.main.setZoom(d.zoom || 1); }
+    if (opts && opts.rebuild) {
+      // tear down gameplay scenes and rebuild textures from Boot
+      ['Interior', 'Overworld'].forEach(k => { if (game.scene.getScene(k)) game.scene.stop(k); });
+      game.scene.start('Boot');
+    }
+  };
+
   wireControls(game);
   registerSW();
 
   // Lightweight support/debug handle (no gameplay effect). Useful for QA and
   // for instructors inspecting state from the console.
   window.CoreSeven = { game, ui, model, storage: Storage, theme };
+}
+
+// Apply DOM-level display options (font size + reduced motion) from storage.
+function applyDisplaySettings() {
+  const d = Storage.display();
+  const root = document.documentElement;
+  root.setAttribute('data-font', d.font || 'md');
+  document.body && document.body.classList.toggle('reduced-motion', !!d.reducedMotion);
 }
 
 // The currently controllable scene (Overworld or an Interior).

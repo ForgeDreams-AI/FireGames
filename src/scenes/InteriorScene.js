@@ -37,6 +37,9 @@ export class InteriorScene extends Phaser.Scene {
     // Small rooms: center the room rather than follow the player.
     this.cameras.main.centerOn(worldW / 2, worldH / 2);
     this.cameras.main.setBackgroundColor(this.theme.hex('bgDeep'));
+    const disp = this.storage.display();
+    this.cameras.main.setZoom(disp.zoom || 1);
+    this._fadeMs = disp.reducedMotion ? 0 : 180;
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.input.keyboard.on('keydown-ENTER', () => this.action());
@@ -45,7 +48,7 @@ export class InteriorScene extends Phaser.Scene {
     this.facing = { x: 0, y: -1 };
     this.moving = false;
 
-    this.cameras.main.fadeIn(180);
+    this.cameras.main.fadeIn(this._fadeMs);
     this.ui.banner('Entering: ' + (this.gym.label || this.event.name));
   }
 
@@ -174,12 +177,11 @@ export class InteriorScene extends Phaser.Scene {
 
   _exit() {
     this.input.enabled = false;
-    this.cameras.main.fadeOut(170);
     this.ui.banner('Returning to the fire-ground');
-    this.cameras.main.once('camerafadeoutcomplete', () => {
-      this.scene.stop();
-      this.scene.wake('Overworld');
-    });
+    const go = () => { this.scene.stop(); this.scene.wake('Overworld'); };
+    if (this._fadeMs <= 0) { go(); return; }
+    this.cameras.main.fadeOut(this._fadeMs);
+    this.cameras.main.once('camerafadeoutcomplete', go);
   }
 }
 

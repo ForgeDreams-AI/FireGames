@@ -1,7 +1,7 @@
 /* service-worker.js — offline-first PWA cache.
    Bump CACHE when any precached file changes. Uses relative URLs so the app
    works from GitHub Pages project subpaths and custom domains alike. */
-const CACHE = 'coreseven-v2';
+const CACHE = 'coreseven-v3';
 
 const ASSETS = [
   './',

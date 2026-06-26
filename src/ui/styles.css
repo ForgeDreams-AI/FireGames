@@ -201,6 +201,38 @@ html, body {
 }
 .cs-banner-flash.show { opacity: 1; transform: translate(-50%, 0); }
 
+/* ---------- graphics settings ---------- */
+.cs-color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; margin: 8px 0; }
+.cs-color-cell { display: flex; flex-direction: column; align-items: center; gap: 4px; background: var(--c-bg); border-radius: 8px; padding: 8px 4px; cursor: pointer; }
+.cs-color-input { width: 44px; height: 30px; border: none; background: none; padding: 0; cursor: pointer; }
+.cs-color-name { font-size: 10px; color: var(--c-text-dim); text-align: center; word-break: break-word; }
+.cs-art-list { display: flex; flex-direction: column; gap: 6px; margin: 8px 0; }
+.cs-art-row { display: flex; align-items: center; gap: 10px; background: var(--c-bg); border-radius: 8px; padding: 8px; }
+.cs-art-thumb { width: 38px; height: 38px; border-radius: 6px; flex: 0 0 38px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; }
+.cs-art-img { width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; }
+.cs-art-meta { flex: 1; min-width: 0; }
+.cs-art-key { font-size: 14px; font-weight: 600; }
+.cs-art-sub { font-size: 11px; color: var(--c-text-dim); }
+.cs-art-upload { flex: 0 0 auto; margin: 0; cursor: pointer; }
+.cs-choice { margin: 8px 0; }
+.cs-choice-label { font-size: 13px; color: var(--c-text-dim); margin-bottom: 4px; }
+
+/* ---------- display: text size ---------- */
+html[data-font="sm"] { }
+html[data-font="sm"] .cs-line, html[data-font="sm"] .cs-btn { font-size: 14px; }
+html[data-font="sm"] .cs-question { font-size: 18px; }
+html[data-font="sm"] .cs-title { font-size: 22px; }
+html[data-font="lg"] .cs-line { font-size: 18px; }
+html[data-font="lg"] .cs-btn, html[data-font="lg"] .cs-btn.answer { font-size: 19px; padding: 16px 18px; }
+html[data-font="lg"] .cs-question { font-size: 25px; }
+html[data-font="lg"] .cs-title { font-size: 30px; }
+html[data-font="lg"] .cs-check-step { font-size: 16px; }
+
+/* ---------- display: reduced motion ---------- */
+body.reduced-motion *, body.reduced-motion *::before, body.reduced-motion *::after {
+  transition: none !important; animation: none !important;
+}
+
 @media (min-width: 760px) {
   .cs-overlay { align-items: center; }
   .cs-panel { border-radius: 16px; }
