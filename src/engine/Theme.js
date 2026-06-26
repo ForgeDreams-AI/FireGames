@@ -27,7 +27,7 @@ export class Theme {
     const name = this.themes[themeName] ? themeName : (this.config.theme || this.names()[0]);
     const ov = this.overrides[name] || {};
     const colors = Object.assign({}, base.colors || {}, ov);
-    this.current = { colors, fonts: base.fonts || {} };
+    this.current = { colors, fonts: base.fonts || {}, zones: base.zones || {} };
     this.name = name;
 
     const root = document.documentElement;
@@ -50,6 +50,13 @@ export class Theme {
     const c = (this.current && this.current.colors) || {};
     return c[colorKey] || '#888888';
   }
+
+  // Zone (discipline) colors for color-coding the campus.
+  zoneHex(zone) {
+    const z = (this.current && this.current.zones) || {};
+    return z[zone] || this.hex('accent');
+  }
+  zoneNum(zone) { return parseInt(this.zoneHex(zone).replace('#', '0x')); }
 
   // ordered list of color keys for the active theme (for the editor UI)
   colorKeys() { return Object.keys((this.current && this.current.colors) || {}); }

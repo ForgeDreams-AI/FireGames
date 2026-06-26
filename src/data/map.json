@@ -46,6 +46,13 @@
         "y": 4
       },
       "unlockIndex": 0,
+      "zone": "scba",
+      "padRect": {
+        "x0": 24,
+        "y0": 1,
+        "x1": 28,
+        "y1": 4
+      },
       "interior": {
         "_comment": "SCBA engine-bay interior. Tiles: 0 bay floor, 1 bay wall, 2 exit.",
         "setting": "engine_bay",
@@ -268,6 +275,13 @@
         "y": 11
       },
       "unlockIndex": 1,
+      "zone": "hose",
+      "padRect": {
+        "x0": 12,
+        "y0": 8,
+        "x1": 15,
+        "y1": 11
+      },
       "interior": {
         "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
         "setting": "classroom",
@@ -550,6 +564,13 @@
         "y": 11
       },
       "unlockIndex": 2,
+      "zone": "hose",
+      "padRect": {
+        "x0": 18,
+        "y0": 8,
+        "x1": 21,
+        "y1": 11
+      },
       "interior": {
         "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
         "setting": "classroom",
@@ -832,6 +853,13 @@
         "y": 11
       },
       "unlockIndex": 3,
+      "zone": "hose",
+      "padRect": {
+        "x0": 24,
+        "y0": 8,
+        "x1": 27,
+        "y1": 11
+      },
       "interior": {
         "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
         "setting": "classroom",
@@ -1114,6 +1142,13 @@
         "y": 19
       },
       "unlockIndex": 4,
+      "zone": "hose",
+      "padRect": {
+        "x0": 18,
+        "y0": 16,
+        "x1": 21,
+        "y1": 19
+      },
       "interior": {
         "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
         "setting": "classroom",
@@ -1396,6 +1431,13 @@
         "y": 4
       },
       "unlockIndex": 5,
+      "zone": "roof",
+      "padRect": {
+        "x0": 1,
+        "y0": 1,
+        "x1": 4,
+        "y1": 4
+      },
       "interior": {
         "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
         "setting": "classroom",
@@ -1678,6 +1720,13 @@
         "y": 4
       },
       "unlockIndex": 6,
+      "zone": "roof",
+      "padRect": {
+        "x0": 6,
+        "y0": 1,
+        "x1": 9,
+        "y1": 4
+      },
       "interior": {
         "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
         "setting": "classroom",
@@ -1960,6 +2009,13 @@
         "y": 11
       },
       "unlockIndex": 7,
+      "zone": "ladders",
+      "padRect": {
+        "x0": 1,
+        "y0": 8,
+        "x1": 4,
+        "y1": 11
+      },
       "interior": {
         "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
         "setting": "classroom",
@@ -2226,6 +2282,13 @@
         "y": 11
       },
       "unlockIndex": 8,
+      "zone": "ladders",
+      "padRect": {
+        "x0": 6,
+        "y0": 8,
+        "x1": 9,
+        "y1": 11
+      },
       "interior": {
         "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
         "setting": "classroom",
@@ -2492,6 +2555,13 @@
         "y": 19
       },
       "unlockIndex": 9,
+      "zone": "ladders",
+      "padRect": {
+        "x0": 1,
+        "y0": 16,
+        "x1": 4,
+        "y1": 19
+      },
       "interior": {
         "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
         "setting": "classroom",

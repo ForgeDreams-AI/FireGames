@@ -87,8 +87,9 @@ export class OverworldScene extends Phaser.Scene {
     this.map.gyms.forEach(gym => {
       const d = gym.door;
       this.doorTiles[d.x + ',' + d.y] = { type: 'gym', eventId: gym.eventId, gym };
+      this._zoneTint(gym);
       this._tileImg(d.x, d.y, 'door').setDepth(1);
-      this._label(d.x, d.y - 0.0, gym.label || gym.eventId, 'accent');
+      this._label(d.x, d.y - 0.0, gym.label || gym.eventId, 'accent', 9, gym.zone);
     });
     const hd = this.map.hub.door;
     this.doorTiles[hd.x + ',' + hd.y] = { type: 'hub' };
@@ -96,13 +97,29 @@ export class OverworldScene extends Phaser.Scene {
     this._label(this.map.hub.building.x0 + 1.5, this.map.hub.building.y0 + 1.3, this.map.hub.label || 'HUB', 'accent', 14);
   }
 
-  _label(tx, ty, text, colorKey, size) {
+  // Color-code a gym's pad by its discipline (zone) so the campus pops and is
+  // easy to navigate. Draws a translucent zone-colored overlay + a banner strip.
+  _zoneTint(gym) {
+    const r = gym.padRect; if (!r) return;
+    const col = this.theme.zoneNum(gym.zone);
+    const g = this.add.graphics().setDepth(0.5);
+    g.fillStyle(col, 0.30).fillRect(r.x0 * this.ts, r.y0 * this.ts, (r.x1 - r.x0 + 1) * this.ts, (r.y1 - r.y0 + 1) * this.ts);
+    g.lineStyle(3, col, 0.95).strokeRect(r.x0 * this.ts + 1, r.y0 * this.ts + 1, (r.x1 - r.x0 + 1) * this.ts - 2, (r.y1 - r.y0 + 1) * this.ts - 2);
+    // a colored banner strip along the top edge of the pad
+    g.fillStyle(col, 0.95).fillRect(r.x0 * this.ts, r.y0 * this.ts, (r.x1 - r.x0 + 1) * this.ts, this.ts * 0.28);
+  }
+
+  _label(tx, ty, text, colorKey, size, zone) {
+    const bg = zone ? this._rgba(this.theme.zoneNum(zone), 0.85) : 'rgba(0,0,0,0.4)';
+    const fg = zone ? '#10141f' : this.theme.hex(colorKey || 'text');
     const t = this.add.text(tx * this.ts + this.ts / 2, ty * this.ts - 6, text, {
-      fontFamily: 'monospace', fontSize: (size || 9) + 'px', color: this.theme.hex(colorKey || 'text'),
-      align: 'center', backgroundColor: 'rgba(0,0,0,0.35)', padding: { x: 2, y: 1 }
+      fontFamily: 'monospace', fontSize: (size || 9) + 'px', color: fg,
+      align: 'center', backgroundColor: bg, padding: { x: 3, y: 2 }, fontStyle: zone ? 'bold' : 'normal'
     }).setOrigin(0.5, 1).setDepth(2);
     return t;
   }
+
+  _rgba(num, a) { return 'rgba(' + ((num >> 16) & 255) + ',' + ((num >> 8) & 255) + ',' + (num & 255) + ',' + a + ')'; }
 
   _spawnNPCs() {
     this.npcs = [];

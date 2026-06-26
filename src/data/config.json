@@ -43,6 +43,12 @@
         "wild": "#E8A33D",
         "door": "#FFC72C"
       },
+      "zones": {
+        "scba": "#FFC72C",
+        "hose": "#4F9BD9",
+        "roof": "#E8772C",
+        "ladders": "#7BB661"
+      },
       "fonts": {
         "display": "'Kenney Future', 'Cormorant Garamond', Georgia, serif",
         "body": "'Kenney Future Narrow', 'DM Sans', system-ui, -apple-system, sans-serif"
@@ -76,6 +82,12 @@
         "npc": "#9ACD9A",
         "wild": "#C9B37B",
         "door": "#D7D7D7"
+      },
+      "zones": {
+        "scba": "#D7D7D7",
+        "hose": "#9DB4C9",
+        "roof": "#C9A06B",
+        "ladders": "#9CB88A"
       },
       "fonts": {
         "display": "'Kenney Future', 'Georgia', serif",
