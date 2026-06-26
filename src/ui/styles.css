@@ -1,12 +1,18 @@
 /* styles.css — all visual chrome driven by theme CSS variables set by Theme.js.
    No academy content here. Mobile-first. */
+
+/* Vendored Kenney fonts (CC0) — local so the PWA looks right fully offline. */
+@font-face { font-family: 'Kenney Future'; src: url('../assets/fonts/KenneyFuture.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Kenney Future Narrow'; src: url('../assets/fonts/KenneyFutureNarrow.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Kenney Blocks'; src: url('../assets/fonts/KenneyBlocks.ttf') format('truetype'); font-display: swap; }
+
 :root {
   --c-bg: #14213D; --c-bg-deep: #0E182B; --c-panel: #1B2C4F; --c-accent: #FFC72C;
   --c-accent-dim: #C99A20; --c-text: #F7F3E8; --c-text-dim: #B9C2D6; --c-good: #7BB661;
   --c-bad: #D9534F; --c-warn: #E8A33D; --c-sage: #9CAF88; --c-cream: #F2ECD9;
   --c-rto: #D9534F; --c-player: #FFC72C;
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Kenney Future', 'Georgia', serif;
+  --font-body: 'Kenney Future Narrow', system-ui, -apple-system, sans-serif;
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body {
@@ -24,7 +30,7 @@ html, body {
   position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column;
   align-items: center; justify-content: center; background: var(--c-bg-deep); gap: 12px;
 }
-#loading .brand { font-family: var(--font-display); font-size: 40px; letter-spacing: 2px; color: var(--c-accent); }
+#loading .brand { font-family: 'Kenney Blocks', var(--font-display); font-size: 40px; letter-spacing: 2px; color: var(--c-accent); }
 #loading .tag { color: var(--c-text-dim); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; }
 #loading .spinner { width: 34px; height: 34px; border: 3px solid var(--c-panel); border-top-color: var(--c-accent); border-radius: 50%; animation: spin 0.9s linear infinite; }
 .load-err { color: var(--c-bad); text-align: center; font-size: 14px; }

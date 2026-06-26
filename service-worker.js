@@ -1,7 +1,7 @@
 /* service-worker.js — offline-first PWA cache.
    Bump CACHE when any precached file changes. Uses relative URLs so the app
    works from GitHub Pages project subpaths and custom domains alike. */
-const CACHE = 'coreseven-v7';
+const CACHE = 'coreseven-v8';
 
 const ASSETS = [
   './',
@@ -41,6 +41,9 @@ const ASSETS = [
   './src/assets/sprites/nozzle.png',
   './src/assets/sprites/bottle.png',
   './src/assets/sprites/hydrant.png',
+  './src/assets/fonts/KenneyFuture.ttf',
+  './src/assets/fonts/KenneyFutureNarrow.ttf',
+  './src/assets/fonts/KenneyBlocks.ttf',
   './src/assets/icons/icon-192.png',
   './src/assets/icons/icon-512.png',
   './src/assets/icons/maskable-512.png'

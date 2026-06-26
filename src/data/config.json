@@ -43,8 +43,8 @@
         "door": "#FFC72C"
       },
       "fonts": {
-        "display": "'Cormorant Garamond', 'Georgia', serif",
-        "body": "'DM Sans', system-ui, -apple-system, sans-serif"
+        "display": "'Kenney Future', 'Cormorant Garamond', Georgia, serif",
+        "body": "'Kenney Future Narrow', 'DM Sans', system-ui, -apple-system, sans-serif"
       }
     },
     "neutral": {
@@ -76,8 +76,8 @@
         "door": "#D7D7D7"
       },
       "fonts": {
-        "display": "'Georgia', serif",
-        "body": "system-ui, -apple-system, sans-serif"
+        "display": "'Kenney Future', 'Georgia', serif",
+        "body": "'Kenney Future Narrow', system-ui, -apple-system, sans-serif"
       }
     }
   }
