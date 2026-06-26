@@ -173,6 +173,7 @@
     head.appendChild(r2);
     head.appendChild(field('rtoIntro (RTO encounter line)', ev.rtoIntro, v => ev.rtoIntro = v, true));
     head.appendChild(field('rtoModePrompt (Drill/Graded prompt)', ev.rtoModePrompt, v => ev.rtoModePrompt = v, true));
+    head.appendChild(field('videoUrl (YouTube demo — shown after the study NPC)', ev.videoUrl, v => ev.videoUrl = v));
     const delEv = el('button', 'b danger mini', '🗑 Delete this event');
     delEv.onclick = () => { if (confirm('Delete event "' + (ev.name || ev.id) + '"?')) { S.events.splice(S.sel, 1); S.sel = Math.max(0, S.sel - 1); render(); } };
     head.appendChild(el('div', null, '')).appendChild(delEv);

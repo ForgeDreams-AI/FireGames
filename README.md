@@ -126,7 +126,9 @@ Open **`studio.html`** (e.g. `http://localhost:8080/studio.html`, or
 no code or JSON editing:
 
 - Loads the live `events.json`; pick any event on the left.
-- Edit event fields (name, badge, standard ref, **time limit**, RTO intro lines)
+- Edit event fields (name, badge, standard ref, **time limit**, RTO intro lines,
+  and a **`videoUrl`** — paste a YouTube link to show a "▶ Watch demo video"
+  button after the study NPC walkthrough and on the RTO screen)
   and every step: **type** (ordered / choice / inspection), the **step text**,
   the **⚠ Critical (instant-fail)** flag, hint, how-to, and — for choice/
   inspection — the answer **options** (first = correct). Add / remove / reorder

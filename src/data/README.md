@@ -31,6 +31,9 @@ Four files:
       "standardRef": "M.P. 1012.05",// the manual reference
       "timeLimitSeconds": 35,       // graded countdown (whole evolution)
       "variants": ["default"],      // side variants, or just ["default"]
+      "videoUrl": "",               // OPTIONAL — a YouTube link. When set, a
+                                    // "Watch demo video" button appears after the
+                                    // study NPC walkthrough and on the RTO screen.
       "sharedSteps": [ ... ],       // steps every variant does
       "variantSteps": {             // OPTIONAL — only for events with sides
         "captain_side": [ ... ],

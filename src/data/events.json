@@ -123,7 +123,8 @@
         }
       ],
       "rtoIntro": "Ready for your SCBA evaluation? Bottle to face piece, in order. Miss a critical and you are done.",
-      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it."
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
     },
     {
       "id": "quick_attack_plug",
@@ -362,7 +363,8 @@
         }
       ],
       "rtoIntro": "Plug position. Pick your side and work the hydrant clean. Lose the safety loop and the run is over.",
-      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it."
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
     },
     {
       "id": "quick_attack_nozzle",
@@ -508,7 +510,8 @@
         }
       ],
       "rtoIntro": "Nozzle position. Swim, stab, grab — line stretched, foot on it, then water. Show me.",
-      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it."
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
     },
     {
       "id": "standpipe_front",
@@ -678,7 +681,8 @@
         }
       ],
       "rtoIntro": "Front seat on the standpipe. Stretch it, protect that gated wye, and never straddle a line.",
-      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it."
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
     },
     {
       "id": "standpipe_nozzle",
@@ -960,7 +964,8 @@
         }
       ],
       "rtoIntro": "Nozzle on the standpipe. Clamp, stretch, IDLH-ready. Any skin showing and you fail.",
-      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it."
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
     },
     {
       "id": "roof_probe",
@@ -1196,7 +1201,8 @@
         }
       ],
       "rtoIntro": "Probe position, vertical vent. Sound before you step and stay off the rungs above the roof line.",
-      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it."
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
     },
     {
       "id": "roof_cut",
@@ -1386,7 +1392,8 @@
         }
       ],
       "rtoIntro": "Cut position. Saw ready before you climb, control it on the roof, shut it down at the right time.",
-      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it."
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
     },
     {
       "id": "ladder_1",
@@ -1411,7 +1418,8 @@
       ],
       "commonTail": [],
       "rtoIntro": "",
-      "rtoModePrompt": ""
+      "rtoModePrompt": "",
+      "videoUrl": ""
     },
     {
       "id": "ladder_2",
@@ -1436,7 +1444,8 @@
       ],
       "commonTail": [],
       "rtoIntro": "",
-      "rtoModePrompt": ""
+      "rtoModePrompt": "",
+      "videoUrl": ""
     },
     {
       "id": "ladder_3",
@@ -1461,7 +1470,8 @@
       ],
       "commonTail": [],
       "rtoIntro": "",
-      "rtoModePrompt": ""
+      "rtoModePrompt": "",
+      "videoUrl": ""
     }
   ]
 }

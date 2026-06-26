@@ -72,6 +72,33 @@ export class UI {
     return h;
   }
 
+  // ================= VIDEO (optional per-event demo) =================
+  openVideo(url, title) {
+    const wrap = this.el('div', 'cs-videowrap');
+    wrap.appendChild(this.header(title || 'Demo video', 'Watch, then face the RTO'));
+    const embed = youtubeEmbed(url);
+    if (embed) {
+      const box = this.el('div', 'cs-video16x9');
+      const f = document.createElement('iframe');
+      f.src = embed; f.title = title || 'demo';
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      f.allowFullscreen = true; f.setAttribute('frameborder', '0');
+      box.appendChild(f); wrap.appendChild(box);
+    } else if (url && url.trim()) {
+      const a = document.createElement('a');
+      a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.className = 'cs-btn primary';
+      a.textContent = 'Open video ↗'; a.style.display = 'inline-block';
+      wrap.appendChild(this.el('div', 'cs-line teach', 'This link isn\'t a recognized YouTube video — open it in a new tab:'));
+      wrap.appendChild(a);
+    } else {
+      wrap.appendChild(this.el('div', 'cs-line teach', 'No video has been added for this skill yet.'));
+    }
+    const row = this.el('div', 'cs-row');
+    row.appendChild(this.button('Done', () => panel.close(), 'primary'));
+    wrap.appendChild(row);
+    var panel = this._openPanel(wrap, { panelClass: 'reference-panel', dim: true });
+  }
+
   // Transient top banner (used by enter/exit transitions).
   banner(text) {
     const b = this.el('div', 'cs-banner-flash', text);
@@ -131,6 +158,12 @@ export class UI {
     const closeBtn = this.button('Done', () => panel.close(), 'ghost');
     const next = this.button('Next ›', () => { if (i < steps.length - 1) { i++; render(); } else panel.close(); });
     nav.appendChild(prev); nav.appendChild(closeBtn); nav.appendChild(next);
+    // Optional demo video for this skill — watch, then go face the RTO.
+    if (event.videoUrl && event.videoUrl.trim()) {
+      const vrow = this.el('div', 'cs-row');
+      vrow.appendChild(this.button('▶ Watch demo video', () => this.openVideo(event.videoUrl, event.name), 'primary'));
+      wrap.appendChild(vrow);
+    }
 
     render();
     var panel = this._openPanel(wrap, { panelClass: 'dialogue-panel' });
@@ -159,6 +192,7 @@ export class UI {
     const menu = this.el('div', 'cs-menu');
     menu.appendChild(this.button('🎯 GRADED — RTO badge run', () => { panel.close(); this._chooseVariantThen(eventId, (v) => this.startBattle(eventId, v, 'graded')); }, 'primary'));
     menu.appendChild(this.button('📚 DRILL — practice (no penalty)', () => { panel.close(); this.openDrillMenu(eventId); }));
+    if (event.videoUrl && event.videoUrl.trim()) menu.appendChild(this.button('▶ Watch demo video', () => this.openVideo(event.videoUrl, event.name)));
     menu.appendChild(this.button('📋 Reference checklist', () => this.openReference(eventId)));
     menu.appendChild(this.button('Step back', () => panel.close(), 'ghost'));
     wrap.appendChild(menu);
@@ -825,6 +859,17 @@ function formatTime(sec) { const m = Math.floor(sec / 60), s = sec % 60; return 
 function truncate(s, n) { n = n || 48; return s.length > n ? s.slice(0, n - 1) + '…' : s; }
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 function pick(a) { return a && a.length ? a[Math.floor(Math.random() * a.length)] : null; }
+// Convert a YouTube watch/share/shorts URL (or bare 11-char id) to an embed URL.
+function youtubeEmbed(url) {
+  if (!url) return null;
+  const u = url.trim();
+  let m = u.match(/youtube\.com\/embed\/([\w-]{11})/); if (m) return 'https://www.youtube.com/embed/' + m[1];
+  m = u.match(/[?&]v=([\w-]{11})/); if (m) return 'https://www.youtube.com/embed/' + m[1];
+  m = u.match(/youtu\.be\/([\w-]{11})/); if (m) return 'https://www.youtube.com/embed/' + m[1];
+  m = u.match(/youtube\.com\/shorts\/([\w-]{11})/); if (m) return 'https://www.youtube.com/embed/' + m[1];
+  if (/^[\w-]{11}$/.test(u)) return 'https://www.youtube.com/embed/' + u;
+  return null;
+}
 function forEachAssetEntry(assets, fn) {
   ['tiles', 'sprites'].forEach(group => {
     const set = (assets && assets[group]) || {};
