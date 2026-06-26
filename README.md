@@ -142,15 +142,19 @@ art** — do not copy any existing game's sprites, fonts, or sounds.
 
 ### Art credits
 
-Bundled art is **CC0 (public domain)** from [Kenney](https://kenney.nl) — no
-attribution required, but credited here as good practice:
+Bundled art:
 
-- **Pico-8 City** — map/interior tiles (ground, road, walls, concrete).
-- **Pixel Vehicle Pack** — the recruit, NPCs, the RTO, the fire engine, and the
-  signage post.
+- **Kenney — Pico-8 City** (CC0): map/interior tiles (ground, road, walls,
+  concrete).
+- **Kenney — Pixel Vehicle Pack** (CC0): the fire engine + the signage post.
+- **First Responders pack** (project-supplied): the firefighter recruit,
+  instructors, RTO, the paramedic wild-NPCs, and the gym tool props (axe, vent
+  saw, hydrant wrench, nozzle). ⚠️ This pack arrived **without a license file** —
+  confirm its usage rights with the original source before public distribution.
 
-Full license texts are in `src/assets/CREDITS-*.txt`. Replace or extend any of it
-via the manifest or the in-app **Settings → Graphics → Replace art**.
+The Kenney packs are CC0 (no attribution required; credited as good practice).
+Full notes are in `src/assets/CREDITS-*.txt`. Replace or extend any art via the
+manifest or the in-app **Settings → Graphics → Replace art**.
 
 ### Theme / chrome
 
