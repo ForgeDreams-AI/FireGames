@@ -123,8 +123,10 @@ full schema written for non-coders. Highlights:
 
 ## Swapping greybox art for real art
 
-The game ships with **greybox** graphics generated at runtime — no art required
-to play. Every tile and sprite is declared in
+The game now ships with **real pixel art** for the map tiles, the recruit, NPCs,
+the RTO, and the fire engine (Kenney CC0 — see *Art credits* below); any key
+without bundled art still falls back to **greybox** generated at runtime, so the
+game always renders. Every tile and sprite is declared in
 **`/src/assets/manifest.json`** by a key. While a key's `"file"` is empty, the
 engine draws a themed greybox box. **To drop in real art with no code changes:**
 
@@ -133,9 +135,22 @@ engine draws a themed greybox box. **To drop in real art with no code changes:**
 3. Reload. The real image replaces the greybox automatically. (If a file is
    missing it safely falls back to greybox.)
 
-Tile images should be `tileSize` square (32×32 by default); sprite sizes are in
-the manifest. **Use only original/greybox art** — do not copy any existing
-game's sprites, fonts, or sounds.
+Images of **any pixel size** drop in — the engine scales them to fit (tiles to
+the 32px cell, sprites to their manifest `w`/`h` box, aspect preserved), so you
+don't have to pre-resize. **Use only original or openly-licensed (e.g. CC0)
+art** — do not copy any existing game's sprites, fonts, or sounds.
+
+### Art credits
+
+Bundled art is **CC0 (public domain)** from [Kenney](https://kenney.nl) — no
+attribution required, but credited here as good practice:
+
+- **Pico-8 City** — map/interior tiles (ground, road, walls, concrete).
+- **Pixel Vehicle Pack** — the recruit, NPCs, the RTO, the fire engine, and the
+  signage post.
+
+Full license texts are in `src/assets/CREDITS-*.txt`. Replace or extend any of it
+via the manifest or the in-app **Settings → Graphics → Replace art**.
 
 ### Theme / chrome
 

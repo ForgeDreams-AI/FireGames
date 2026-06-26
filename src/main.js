@@ -40,7 +40,8 @@ async function main() {
     type: Phaser.AUTO,
     parent: 'game',
     backgroundColor: theme.hex('bgDeep'),
-    pixelArt: false,
+    pixelArt: true,
+    roundPixels: true,
     scale: {
       mode: Phaser.Scale.RESIZE,
       autoCenter: Phaser.Scale.CENTER_BOTH,

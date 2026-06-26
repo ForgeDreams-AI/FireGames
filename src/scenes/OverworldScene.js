@@ -76,8 +76,8 @@ export class OverworldScene extends Phaser.Scene {
       for (let x = 0; x < this.map.width; x++) {
         const key = TILE_KEY[g[y][x]] || 'ground';
         // draw ground under everything for nicer edges
-        if (g[y][x] !== 0) this.add.image(x * this.ts, y * this.ts, 'ground').setOrigin(0);
-        this.add.image(x * this.ts, y * this.ts, key).setOrigin(0);
+        if (g[y][x] !== 0) this._tileImg(x, y, 'ground');
+        this._tileImg(x, y, key);
       }
     }
   }
@@ -87,12 +87,12 @@ export class OverworldScene extends Phaser.Scene {
     this.map.gyms.forEach(gym => {
       const d = gym.door;
       this.doorTiles[d.x + ',' + d.y] = { type: 'gym', eventId: gym.eventId, gym };
-      this.add.image(d.x * this.ts, d.y * this.ts, 'door').setOrigin(0).setDepth(1);
+      this._tileImg(d.x, d.y, 'door').setDepth(1);
       this._label(d.x, d.y - 0.0, gym.label || gym.eventId, 'accent');
     });
     const hd = this.map.hub.door;
     this.doorTiles[hd.x + ',' + hd.y] = { type: 'hub' };
-    this.add.image(hd.x * this.ts, hd.y * this.ts, 'door').setOrigin(0).setDepth(1);
+    this._tileImg(hd.x, hd.y, 'door').setDepth(1);
     this._label(this.map.hub.building.x0 + 1.5, this.map.hub.building.y0 + 1.3, this.map.hub.label || 'HUB', 'accent', 14);
   }
 
@@ -107,7 +107,7 @@ export class OverworldScene extends Phaser.Scene {
   _spawnNPCs() {
     this.npcs = [];
     (this.map.npcs || []).forEach(n => {
-      const img = this.add.image(n.tile.x * this.ts + this.ts / 2, n.tile.y * this.ts + this.ts / 2, n.spriteKey || 'npc').setDepth(3);
+      const img = this._actor(n.tile.x, n.tile.y, n.spriteKey || 'npc', 3);
       this._label(n.tile.x, n.tile.y, n.name || 'NPC', 'sage');
       this.npcs.push({ def: n, img });
     });
@@ -117,7 +117,7 @@ export class OverworldScene extends Phaser.Scene {
     this.wild = [];
     (this.map.wildNPCs || []).forEach(w => {
       const start = w.patrol && w.patrol[0] ? w.patrol[0] : { x: 1, y: 1 };
-      const img = this.add.image(start.x * this.ts + this.ts / 2, start.y * this.ts + this.ts / 2, w.spriteKey || 'wild').setDepth(3);
+      const img = this._actor(start.x, start.y, w.spriteKey || 'wild', 3);
       this.wild.push({ def: w, img, tile: { x: start.x, y: start.y }, pi: 0 });
     });
   }
@@ -126,10 +126,26 @@ export class OverworldScene extends Phaser.Scene {
     const s = this.map.playerStart;
     this.tile = { x: s.x, y: s.y };
     this.player = this.physics.add.image(this._cx(s.x), this._cy(s.y), 'player').setDepth(5);
+    const ps = (this.registry.get('data').assets.sprites || {}).player || {};
+    const bw = ps.w || 28, bh = ps.h || 28;
+    this.player.setScale(Math.min(bw / (this.player.width || bw), bh / (this.player.height || bh)));
   }
 
   _cx(tx) { return tx * this.ts + this.ts / 2; }
   _cy(ty) { return ty * this.ts + this.ts / 2; }
+
+  // Art-swap sizing: tiles fill the cell; actor sprites scale to fit their
+  // manifest w/h box (aspect preserved). Greybox textures are already box-sized
+  // so they pass through unchanged.
+  _tileImg(x, y, key) { return this.add.image(x * this.ts, y * this.ts, key).setOrigin(0).setDisplaySize(this.ts, this.ts); }
+  _actor(x, y, key, depth) {
+    const img = this.add.image(this._cx(x), this._cy(y), key).setDepth(depth || 3);
+    const s = (this.registry.get('data').assets.sprites || {})[key] || {};
+    const bw = s.w || 26, bh = s.h || 26;
+    const iw = img.width || bw, ih = img.height || bh;
+    img.setScale(Math.min(bw / iw, bh / ih));
+    return img;
+  }
 
   // ----- input from DOM d-pad -----
   setDir(dir) { this.touchDir = dir; }

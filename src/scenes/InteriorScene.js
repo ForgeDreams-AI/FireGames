@@ -61,38 +61,49 @@ export class InteriorScene extends Phaser.Scene {
     const g = this.room.grid;
     for (let y = 0; y < this.room.height; y++) {
       for (let x = 0; x < this.room.width; x++) {
-        if (g[y][x] !== 0) this.add.image(x * this.ts, y * this.ts, 'ifloor').setOrigin(0);
-        this.add.image(x * this.ts, y * this.ts, ITILE[g[y][x]] || 'ifloor').setOrigin(0);
+        if (g[y][x] !== 0) this._tileImg(x, y, 'ifloor');
+        this._tileImg(x, y, ITILE[g[y][x]] || 'ifloor');
       }
     }
   }
 
   _placeObjects() {
-    // props (greybox box + data label)
+    // props (greybox box or real art + data label)
     (this.room.props || []).forEach(p => {
-      this.add.image(this._cx(p.tile.x), this._cy(p.tile.y), p.spriteKey).setDepth(2);
+      this._actor(p.tile.x, p.tile.y, p.spriteKey, 2);
       if (p.label) this._tag(p.tile.x, p.tile.y, p.label, 'sage');
     });
 
     // signage board — text composed from data (name / badge / time / threshold)
     const sg = this.room.signage;
     if (sg) {
-      this.add.image(this._cx(sg.tile.x), this._cy(sg.tile.y), 'signage').setDepth(2);
+      this._actor(sg.tile.x, sg.tile.y, 'signage', 2);
       this._signLabel(sg.tile.x, sg.tile.y);
     }
 
     // study NPC(s)
     this.npcs = [];
     (this.room.studyNPCs || []).forEach(n => {
-      this.add.image(this._cx(n.tile.x), this._cy(n.tile.y), n.spriteKey || 'npc').setDepth(3);
+      this._actor(n.tile.x, n.tile.y, n.spriteKey || 'npc', 3);
       this._tag(n.tile.x, n.tile.y, n.name || 'Instructor', 'sage');
       this.npcs.push(n);
     });
 
     // RTO
     this.rto = this.room.rto;
-    this.add.image(this._cx(this.rto.tile.x), this._cy(this.rto.tile.y), this.rto.spriteKey || 'rto').setDepth(3);
+    this._actor(this.rto.tile.x, this.rto.tile.y, this.rto.spriteKey || 'rto', 3);
     this._tag(this.rto.tile.x, this.rto.tile.y, this.rto.name || 'RTO Evaluator', 'rto');
+  }
+
+  // Art-swap sizing (see OverworldScene): tiles fill the cell; sprites fit box.
+  _tileImg(x, y, key) { return this.add.image(x * this.ts, y * this.ts, key).setOrigin(0).setDisplaySize(this.ts, this.ts); }
+  _actor(x, y, key, depth) {
+    const img = this.add.image(this._cx(x), this._cy(y), key).setDepth(depth || 3);
+    const s = (this.registry.get('data').assets.sprites || {})[key] || {};
+    const bw = s.w || 26, bh = s.h || 26;
+    const iw = img.width || bw, ih = img.height || bh;
+    img.setScale(Math.min(bw / iw, bh / ih));
+    return img;
   }
 
   _signLabel(tx, ty) {
@@ -121,6 +132,9 @@ export class InteriorScene extends Phaser.Scene {
     const s = this.room.entryTile;
     this.tile = { x: s.x, y: s.y };
     this.player = this.physics.add.image(this._cx(s.x), this._cy(s.y), 'player').setDepth(5);
+    const ps = (this.registry.get('data').assets.sprites || {}).player || {};
+    const bw = ps.w || 28, bh = ps.h || 28;
+    this.player.setScale(Math.min(bw / (this.player.width || bw), bh / (this.player.height || bh)));
   }
 
   _cx(tx) { return tx * this.ts + this.ts / 2; }
