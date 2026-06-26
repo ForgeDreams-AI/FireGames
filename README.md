@@ -30,9 +30,14 @@ python3 -m http.server 8080
 npx serve .
 ```
 
-Then open <http://localhost:8080>. On a phone, use the on-screen D-pad + **A**
-button; on desktop use **arrow keys** and **Enter/Space**. The **MENU** button
-(or walking into the HUB) opens the badge case, reference library, and settings.
+Then open <http://localhost:8080>. Controls work three ways, anywhere:
+- **Touch / trackpad / mouse:** the on-screen **D-pad** + **A** button, **or
+  tap/click a tile to walk there** (tap an NPC or the RTO to walk up and interact).
+- **Keyboard:** **arrow keys** to move, **Enter/Space** for the A button.
+
+The **MENU** button (or walking into the HUB) opens the badge case, reference
+library, and settings. On a laptop you can freely mix arrow keys with trackpad
+clicks.
 
 ### How to play
 1. Walk to a **gym pad** (gold door) and step on the door.

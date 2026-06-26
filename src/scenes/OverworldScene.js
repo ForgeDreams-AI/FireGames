@@ -1,8 +1,10 @@
 // OverworldScene.js — the walkable fire-ground. Renders the grid from map.json,
-// moves the recruit tile-by-tile (keyboard + injected touch direction), handles
-// fence/building collision, and fires triggers (enter gym / talk NPC / hub /
-// wild quiz). It holds NO content — all geometry, labels and links come from
-// map.json; all dialogue/quiz UI is delegated to the UI layer.
+// moves the recruit tile-by-tile (keyboard, on-screen d-pad, OR tap/click a
+// tile to walk there), handles fence/building collision, and fires triggers
+// (enter gym / talk NPC / hub / wild quiz). It holds NO content — all geometry,
+// labels and links come from map.json; dialogue/quiz UI is delegated to the UI.
+
+import { bfsPath, bfsAdjacent } from '../engine/Pathfinder.js';
 
 const TILE_KEY = { 0: 'ground', 1: 'road', 2: 'fence', 3: 'building', 4: 'pad', 5: 'padwall' };
 
@@ -42,12 +44,15 @@ export class OverworldScene extends Phaser.Scene {
     this.facing = { x: 0, y: 1 };
     this.moving = false;
     this._wildTimer = 0;
+    this.path = [];               // tap/click-to-move queue
+    this.pendingInteract = null;  // object tile to interact with on arrival
+    this.input.on('pointerdown', (p) => this._onPointer(p));
 
     // When we return from an interior, this scene is woken (not re-created):
     // restore control + fade the camera back in.
     this.events.on('wake', () => {
       this.registry.set('activeScene', this);
-      this.touchDir = null; this.moving = false;
+      this.touchDir = null; this.moving = false; this._clearPath();
       this.input.enabled = true;
       this._applyDisplay();
       this.cameras.main.fadeIn(this._fadeMs);
@@ -142,8 +147,64 @@ export class OverworldScene extends Phaser.Scene {
     else if (this.cursors.down.isDown || this.touchDir === 'down') dy = 1;
 
     if (dx !== 0 || dy !== 0) {
+      // manual input overrides any active tap-to-move path
+      this._clearPath();
       this.facing = { x: dx, y: dy };
       this._tryStep(dx, dy);
+    } else if (this.path.length) {
+      this._advancePath();
+    }
+  }
+
+  // ----- tap / click to move -----
+  _onPointer(p) {
+    if (this.ui.isModalOpen() || this.moving) return;
+    const tx = Math.floor(p.worldX / this.ts), ty = Math.floor(p.worldY / this.ts);
+    if (tx < 0 || ty < 0 || tx >= this.map.width || ty >= this.map.height) return;
+    // tapping an instructor NPC -> walk adjacent then talk
+    if (this._npcAt(tx, ty)) { this._walkToInteract({ x: tx, y: ty }); return; }
+    // otherwise walk onto a reachable tile (doors/wild trigger on arrival)
+    if (this._walkable(tx, ty)) this._walkTo({ x: tx, y: ty }, null);
+  }
+
+  _passable(x, y) { return this._walkable(x, y) && !this._npcAt(x, y); }
+
+  _walkTo(goal, interactTile) {
+    const path = bfsPath(this.map.width, this.map.height, (x, y) => this._passable(x, y), this.tile, goal);
+    if (path) { this.path = path; this.pendingInteract = interactTile; this.touchDir = null; }
+  }
+
+  _walkToInteract(target) {
+    const path = bfsAdjacent(this.map.width, this.map.height, (x, y) => this._passable(x, y), this.tile, target);
+    if (path) {
+      this.path = path; this.pendingInteract = target; this.touchDir = null;
+      if (!path.length) this._finishPath(); // already adjacent — interact now
+    }
+  }
+
+  _clearPath() { this.path = []; this.pendingInteract = null; }
+
+  _advancePath() {
+    const next = this.path[0];
+    const w = this._wildAt(next.x, next.y);
+    if (w) { this._clearPath(); this._triggerWild(w); return; }
+    if (this._npcAt(next.x, next.y) || !this._walkable(next.x, next.y)) { this._clearPath(); return; }
+    this.path.shift();
+    this.facing = { x: next.x - this.tile.x, y: next.y - this.tile.y };
+    this.moving = true;
+    this.tile = { x: next.x, y: next.y };
+    this.tweens.add({
+      targets: this.player, x: this._cx(next.x), y: this._cy(next.y), duration: 130, ease: 'Linear',
+      onComplete: () => { this.moving = false; this._onArrive(); if (!this.path.length) this._finishPath(); }
+    });
+  }
+
+  _finishPath() {
+    if (!this.pendingInteract) return;
+    const T = this.pendingInteract; this.pendingInteract = null;
+    if (Math.abs(T.x - this.tile.x) + Math.abs(T.y - this.tile.y) === 1) {
+      this.facing = { x: T.x - this.tile.x, y: T.y - this.tile.y };
+      this.action();
     }
   }
 

@@ -5,6 +5,8 @@
 //
 // Interior tile codes: 0 floor (walkable), 1 wall (blocked), 2 exit (walkable).
 
+import { bfsPath, bfsAdjacent } from '../engine/Pathfinder.js';
+
 const ITILE = { 0: 'ifloor', 1: 'iwall', 2: 'exit' };
 
 export class InteriorScene extends Phaser.Scene {
@@ -47,6 +49,9 @@ export class InteriorScene extends Phaser.Scene {
     this.touchDir = null;
     this.facing = { x: 0, y: -1 };
     this.moving = false;
+    this.path = [];
+    this.pendingInteract = null;
+    this.input.on('pointerdown', (p) => this._onPointer(p));
 
     this.cameras.main.fadeIn(this._fadeMs);
     this.ui.banner('Entering: ' + (this.gym.label || this.event.name));
@@ -131,7 +136,8 @@ export class InteriorScene extends Phaser.Scene {
     else if (this.cursors.right.isDown || this.touchDir === 'right') dx = 1;
     else if (this.cursors.up.isDown || this.touchDir === 'up') dy = -1;
     else if (this.cursors.down.isDown || this.touchDir === 'down') dy = 1;
-    if (dx || dy) { this.facing = { x: dx, y: dy }; this._tryStep(dx, dy); }
+    if (dx || dy) { this._clearPath(); this.facing = { x: dx, y: dy }; this._tryStep(dx, dy); }
+    else if (this.path.length) this._advancePath();
   }
 
   _tryStep(dx, dy) {
@@ -144,6 +150,56 @@ export class InteriorScene extends Phaser.Scene {
       targets: this.player, x: this._cx(nx), y: this._cy(ny), duration: 120,
       onComplete: () => { this.moving = false; this._onArrive(); }
     });
+  }
+
+  // ----- tap / click to move -----
+  _onPointer(p) {
+    if (this.ui.isModalOpen() || this.moving) return;
+    const tx = Math.floor(p.worldX / this.ts), ty = Math.floor(p.worldY / this.ts);
+    if (tx < 0 || ty < 0 || tx >= this.room.width || ty >= this.room.height) return;
+    const interactable = (this.rto.tile.x === tx && this.rto.tile.y === ty) ||
+      (this.npcs || []).some(n => n.tile.x === tx && n.tile.y === ty);
+    if (interactable) { this._walkToInteract({ x: tx, y: ty }); return; }
+    if (this._walkable(tx, ty)) this._walkTo({ x: tx, y: ty }, null);
+  }
+
+  _passable(x, y) { return this._walkable(x, y) && !this._objectAt(x, y); }
+
+  _walkTo(goal, interactTile) {
+    const path = bfsPath(this.room.width, this.room.height, (x, y) => this._passable(x, y), this.tile, goal);
+    if (path) { this.path = path; this.pendingInteract = interactTile; this.touchDir = null; }
+  }
+
+  _walkToInteract(target) {
+    const path = bfsAdjacent(this.room.width, this.room.height, (x, y) => this._passable(x, y), this.tile, target);
+    if (path) {
+      this.path = path; this.pendingInteract = target; this.touchDir = null;
+      if (!path.length) this._finishPath(); // already adjacent — interact now
+    }
+  }
+
+  _clearPath() { this.path = []; this.pendingInteract = null; }
+
+  _advancePath() {
+    const next = this.path[0];
+    if (this._objectAt(next.x, next.y) || !this._walkable(next.x, next.y)) { this._clearPath(); return; }
+    this.path.shift();
+    this.facing = { x: next.x - this.tile.x, y: next.y - this.tile.y };
+    this.moving = true;
+    this.tile = { x: next.x, y: next.y };
+    this.tweens.add({
+      targets: this.player, x: this._cx(next.x), y: this._cy(next.y), duration: 120,
+      onComplete: () => { this.moving = false; this._onArrive(); if (!this.path.length) this._finishPath(); }
+    });
+  }
+
+  _finishPath() {
+    if (!this.pendingInteract) return;
+    const T = this.pendingInteract; this.pendingInteract = null;
+    if (Math.abs(T.x - this.tile.x) + Math.abs(T.y - this.tile.y) === 1) {
+      this.facing = { x: T.x - this.tile.x, y: T.y - this.tile.y };
+      this.action();
+    }
   }
 
   _onArrive() {
