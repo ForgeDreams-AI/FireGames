@@ -1,0 +1,18 @@
+{
+  "_comment": "ART SWAP LAYER. Every sprite/tile the engine draws is listed here by key. While 'file' is empty the engine draws a GREYBOX texture from the spec (color/shape/size from the active theme). To ship real art with NO code changes: drop a PNG into src/assets/ and set its relative path in 'file' for that key. Sizes are in pixels; tiles should match map.tileSize (32).",
+  "tiles": {
+    "ground":   { "file": "", "shape": "tile", "colorKey": "ground" },
+    "road":     { "file": "", "shape": "tile", "colorKey": "road" },
+    "fence":    { "file": "", "shape": "tile", "colorKey": "fence", "border": true },
+    "building": { "file": "", "shape": "tile", "colorKey": "building", "border": true },
+    "pad":      { "file": "", "shape": "tile", "colorKey": "pad" },
+    "padwall":  { "file": "", "shape": "tile", "colorKey": "padWall", "border": true },
+    "door":     { "file": "", "shape": "doormark", "colorKey": "door" }
+  },
+  "sprites": {
+    "player": { "file": "", "shape": "actor", "colorKey": "player", "w": 28, "h": 28, "label": "R" },
+    "rto":    { "file": "", "shape": "actor", "colorKey": "rto", "w": 28, "h": 28, "label": "RTO" },
+    "npc":    { "file": "", "shape": "actor", "colorKey": "npc", "w": 26, "h": 26, "label": "?" },
+    "wild":   { "file": "", "shape": "actor", "colorKey": "wild", "w": 24, "h": 24, "label": "!" }
+  }
+}

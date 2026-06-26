@@ -1,0 +1,16 @@
+{
+  "name": "Core Seven — PRTA Recruit Training",
+  "short_name": "Core Seven",
+  "description": "A Pokémon-style training game for Phoenix Regional Training Academy firefighter recruits. A study tool disguised as a game.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0E182B",
+  "theme_color": "#14213D",
+  "icons": [
+    { "src": "./src/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./src/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./src/assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

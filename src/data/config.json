@@ -1,0 +1,84 @@
+{
+  "appName": "Core Seven",
+  "version": "0.1.0",
+  "passThreshold": 0.65,
+  "theme": "forgedreams",
+  "studyTimedUsesRealLimit": true,
+  "studyTimedRelaxMultiplier": 1.5,
+  "settings": {
+    "startingHP": 5,
+    "criticalHPLoss": 0,
+    "nonCriticalHPLoss": 1,
+    "optionCount": 4,
+    "wildRewardMessage": "Sharp recall, recruit. Keep moving.",
+    "wildWrongMessage": "Not quite — review that one back at the gym."
+  },
+  "themes": {
+    "forgedreams": {
+      "name": "ForgeDreams",
+      "colors": {
+        "bg": "#14213D",
+        "bgDeep": "#0E182B",
+        "panel": "#1B2C4F",
+        "panelSolid": "#1B2C4F",
+        "accent": "#FFC72C",
+        "accentDim": "#C99A20",
+        "text": "#F7F3E8",
+        "textDim": "#B9C2D6",
+        "sage": "#9CAF88",
+        "cream": "#F2ECD9",
+        "good": "#7BB661",
+        "bad": "#D9534F",
+        "warn": "#E8A33D",
+        "ground": "#3A4358",
+        "road": "#4A5468",
+        "fence": "#0C1322",
+        "building": "#243B6B",
+        "pad": "#444E63",
+        "padWall": "#10182B",
+        "player": "#FFC72C",
+        "rto": "#D9534F",
+        "npc": "#9CAF88",
+        "wild": "#E8A33D",
+        "door": "#FFC72C"
+      },
+      "fonts": {
+        "display": "'Cormorant Garamond', 'Georgia', serif",
+        "body": "'DM Sans', system-ui, -apple-system, sans-serif"
+      }
+    },
+    "neutral": {
+      "name": "Greybox",
+      "colors": {
+        "bg": "#2B2B2B",
+        "bgDeep": "#1E1E1E",
+        "panel": "#3A3A3A",
+        "panelSolid": "#3A3A3A",
+        "accent": "#D7D7D7",
+        "accentDim": "#9A9A9A",
+        "text": "#F0F0F0",
+        "textDim": "#B0B0B0",
+        "sage": "#8A8A8A",
+        "cream": "#DADADA",
+        "good": "#8FbC8F",
+        "bad": "#C97B7B",
+        "warn": "#C9B37B",
+        "ground": "#555555",
+        "road": "#666666",
+        "fence": "#222222",
+        "building": "#444444",
+        "pad": "#5E5E5E",
+        "padWall": "#2A2A2A",
+        "player": "#EFEFEF",
+        "rto": "#C97B7B",
+        "npc": "#9ACD9A",
+        "wild": "#C9B37B",
+        "door": "#D7D7D7"
+      },
+      "fonts": {
+        "display": "'Georgia', serif",
+        "body": "system-ui, -apple-system, sans-serif"
+      }
+    }
+  }
+}

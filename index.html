@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#14213D" />
+  <meta name="description" content="CORE SEVEN — a Pokémon-style training game for PRTA firefighter recruits. A study tool disguised as a game." />
+  <title>Core Seven</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./src/assets/icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- Web fonts (graceful fallback to Georgia / system-ui offline) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./src/ui/styles.css" />
+</head>
+<body>
+  <div id="game"></div>
+
+  <div id="loading">
+    <div class="brand">CORE SEVEN</div>
+    <div class="tag">PRTA Recruit Training</div>
+    <div class="spinner"></div>
+  </div>
+
+  <!-- modal overlay layer (dialogue / battle / menus) -->
+  <div id="ui-root"></div>
+
+  <!-- on-screen touch controls -->
+  <div id="controls">
+    <div id="dpad">
+      <button class="dbtn up" data-dir="up" aria-label="Up">▲</button>
+      <button class="dbtn left" data-dir="left" aria-label="Left">◀</button>
+      <div class="center"></div>
+      <button class="dbtn right" data-dir="right" aria-label="Right">▶</button>
+      <button class="dbtn down" data-dir="down" aria-label="Down">▼</button>
+    </div>
+    <div id="action-cluster">
+      <button class="abtn menu" id="btn-menu" aria-label="Menu">MENU</button>
+      <button class="abtn" id="btn-action" aria-label="Action">A</button>
+    </div>
+  </div>
+
+  <!-- Phaser (vendored locally for offline PWA) -->
+  <script src="./vendor/phaser.min.js"></script>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

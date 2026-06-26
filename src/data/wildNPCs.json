@@ -1,0 +1,22 @@
+{
+  "_comment": "Roaming quiz NPCs for spaced repetition between gyms. Spawn tiles + patrol paths live in map.json (wildNPCs[]). This file holds behavior. Questions are NEVER stored here — they are pulled live from events.json, restricted to events the recruit has already encountered (seenEvents in localStorage).",
+  "behavior": {
+    "moveEveryMs": 700,
+    "questionRule": "random-step-from-seen-events",
+    "questionTypesPreferred": ["ordered", "choice"],
+    "askPromptTemplate": "Quick! What comes after \"{prev}\"?",
+    "firstStepPromptTemplate": "Quick! What is the FIRST action of {eventName}?",
+    "rewardKey": "wildRewardMessage",
+    "wrongKey": "wildWrongMessage",
+    "cooldownMs": 1500,
+    "optionCount": 4
+  },
+  "flavor": {
+    "names": ["Recruit Ramos", "Recruit Blake", "Recruit Nguyen"],
+    "greetings": [
+      "Hey! Pop quiz —",
+      "Hold up, recruit —",
+      "Quick drill —"
+    ]
+  }
+}
