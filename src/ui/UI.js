@@ -582,9 +582,9 @@ export class UI {
     });
     wrap.appendChild(grid);
     if (earned.length === events.length) {
-      wrap.appendChild(this.el('div', 'cs-banner good', '✅ ALL SEVEN BADGES — cleared for the live fire-ground test!'));
+      wrap.appendChild(this.el('div', 'cs-banner good', '✅ ALL ' + events.length + ' BADGES — cleared for the live fire-ground test!'));
     } else {
-      wrap.appendChild(this.el('div', 'cs-banner', 'Collect all 7 to clear for the live fire-ground test.'));
+      wrap.appendChild(this.el('div', 'cs-banner', 'Collect all ' + events.length + ' to clear for the live fire-ground test.'));
     }
     wrap.appendChild(this.button('Close', () => panel.close(), 'primary'));
     var panel = this._openPanel(wrap, { panelClass: 'reference-panel' });
@@ -744,7 +744,7 @@ export class UI {
 
   _checkAllBadges() {
     if (this.storage.earnedBadges().length === this.model.all().length) {
-      setTimeout(() => this.toast('✅ All 7 badges — cleared for the live fire-ground test!', 'good'), 600);
+      setTimeout(() => this.toast('✅ All ' + this.model.all().length + ' badges — cleared for the live fire-ground test!', 'good'), 600);
     }
   }
 

@@ -1387,6 +1387,81 @@
       ],
       "rtoIntro": "Cut position. Saw ready before you climb, control it on the roof, shut it down at the right time.",
       "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it."
+    },
+    {
+      "id": "ladder_1",
+      "name": "Ladders — Type 1",
+      "badgeName": "Ladder Type 1 Badge",
+      "standardRef": "M.P. 1012.00",
+      "timeLimitSeconds": 180,
+      "variants": [
+        "default"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "(Placeholder — add the first graded step in the Studio.)",
+          "critical": false,
+          "hint": "",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "commonTail": [],
+      "rtoIntro": "",
+      "rtoModePrompt": ""
+    },
+    {
+      "id": "ladder_2",
+      "name": "Ladders — Type 2",
+      "badgeName": "Ladder Type 2 Badge",
+      "standardRef": "M.P. 1012.00",
+      "timeLimitSeconds": 180,
+      "variants": [
+        "default"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "(Placeholder — add the first graded step in the Studio.)",
+          "critical": false,
+          "hint": "",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "commonTail": [],
+      "rtoIntro": "",
+      "rtoModePrompt": ""
+    },
+    {
+      "id": "ladder_3",
+      "name": "Ladders — Type 3",
+      "badgeName": "Ladder Type 3 Badge",
+      "standardRef": "M.P. 1012.00",
+      "timeLimitSeconds": 180,
+      "variants": [
+        "default"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "(Placeholder — add the first graded step in the Studio.)",
+          "critical": false,
+          "hint": "",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "commonTail": [],
+      "rtoIntro": "",
+      "rtoModePrompt": ""
     }
   ]
 }
