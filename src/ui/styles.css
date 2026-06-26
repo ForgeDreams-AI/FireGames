@@ -191,6 +191,16 @@ html, body {
 .cs-toast.good { border-color: var(--c-good); }
 .cs-toast.warn { border-color: var(--c-warn); }
 
+/* ---------- transition banner (enter/exit gym) ---------- */
+.cs-banner-flash {
+  position: fixed; top: 18%; left: 50%; transform: translate(-50%, -8px); z-index: 45;
+  background: var(--c-bg-deep); color: var(--c-accent); border: 1px solid var(--c-accent);
+  font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; padding: 10px 22px;
+  border-radius: 10px; opacity: 0; transition: all 0.25s ease; pointer-events: none;
+  max-width: 90vw; text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+.cs-banner-flash.show { opacity: 1; transform: translate(-50%, 0); }
+
 @media (min-width: 760px) {
   .cs-overlay { align-items: center; }
   .cs-panel { border-radius: 16px; }

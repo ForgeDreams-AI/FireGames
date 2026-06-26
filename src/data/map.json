@@ -8,7 +8,12 @@
       "4": "pad floor (walkable)",
       "5": "pad wall (blocked)"
     },
-    "note": "walkable tile codes are in \"walkable\". Gym entry = stepping on a gym door tile. To reassign a pad to a different skill, change that gym's eventId only."
+    "interiorTiles": {
+      "0": "floor (walkable)",
+      "1": "wall (blocked)",
+      "2": "exit door (walkable, returns to overworld)"
+    },
+    "note": "walkable tile codes are in \"walkable\". Gym entry = stepping on a gym door tile, which loads that gym's interior room. To reassign a pad to a different skill, change that gym's eventId only. Each gym.interior is its own room; edit its rto/studyNPCs/props/signage/exit coords freely."
   },
   "tileSize": 32,
   "width": 28,
@@ -45,7 +50,179 @@
         "x": 2,
         "y": 4
       },
-      "unlockIndex": 0
+      "unlockIndex": 0,
+      "interior": {
+        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "width": 11,
+        "height": 9,
+        "walkable": [
+          0,
+          2
+        ],
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 7
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 8
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_scba",
+            "name": "Instructor Vega",
+            "tile": {
+              "x": 3,
+              "y": 5
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_scba",
+            "label": "SCBA Set"
+          }
+        ]
+      }
     },
     {
       "id": "gym_qplug",
@@ -55,7 +232,187 @@
         "y": 4
       },
       "unlockIndex": 1,
-      "label": "Quick Attack — Plug"
+      "label": "Quick Attack — Plug",
+      "interior": {
+        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "width": 11,
+        "height": 9,
+        "walkable": [
+          0,
+          2
+        ],
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 7
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 8
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_quick_attack_plug",
+            "name": "Engineer Cole",
+            "tile": {
+              "x": 3,
+              "y": 5
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_engine",
+            "label": "Engine"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 5
+            },
+            "spriteKey": "prop_hydrant",
+            "label": "Hydrant"
+          }
+        ]
+      }
     },
     {
       "id": "gym_qnozzle",
@@ -65,7 +422,187 @@
         "y": 4
       },
       "unlockIndex": 2,
-      "label": "Quick Attack — Nozzle"
+      "label": "Quick Attack — Nozzle",
+      "interior": {
+        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "width": 11,
+        "height": 9,
+        "walkable": [
+          0,
+          2
+        ],
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 7
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 8
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_quick_attack_nozzle",
+            "name": "Engineer Diaz",
+            "tile": {
+              "x": 3,
+              "y": 5
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_engine",
+            "label": "Engine"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 5
+            },
+            "spriteKey": "prop_hydrant",
+            "label": "Hydrant"
+          }
+        ]
+      }
     },
     {
       "id": "gym_spfront",
@@ -75,7 +612,187 @@
         "y": 4
       },
       "unlockIndex": 3,
-      "label": "Standpipe — Front Seat"
+      "label": "Standpipe — Front Seat",
+      "interior": {
+        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "width": 11,
+        "height": 9,
+        "walkable": [
+          0,
+          2
+        ],
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 7
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 8
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_standpipe_front",
+            "name": "Captain Reyes",
+            "tile": {
+              "x": 3,
+              "y": 5
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_engine",
+            "label": "Engine"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 5
+            },
+            "spriteKey": "prop_standpipe",
+            "label": "Standpipe / Wye"
+          }
+        ]
+      }
     },
     {
       "id": "gym_spnozzle",
@@ -85,7 +802,187 @@
         "y": 16
       },
       "unlockIndex": 4,
-      "label": "Standpipe — Nozzle"
+      "label": "Standpipe — Nozzle",
+      "interior": {
+        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "width": 11,
+        "height": 9,
+        "walkable": [
+          0,
+          2
+        ],
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 7
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 8
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_standpipe_nozzle",
+            "name": "FF Okafor",
+            "tile": {
+              "x": 3,
+              "y": 5
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_engine",
+            "label": "Engine"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 5
+            },
+            "spriteKey": "prop_standpipe",
+            "label": "Standpipe / Wye"
+          }
+        ]
+      }
     },
     {
       "id": "gym_roofprobe",
@@ -95,7 +992,187 @@
         "y": 16
       },
       "unlockIndex": 5,
-      "label": "Roof Ops — Probe"
+      "label": "Roof Ops — Probe",
+      "interior": {
+        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "width": 11,
+        "height": 9,
+        "walkable": [
+          0,
+          2
+        ],
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 7
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 8
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_roof_probe",
+            "name": "Truckie Hahn",
+            "tile": {
+              "x": 3,
+              "y": 5
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_roof",
+            "label": "Roof"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 5
+            },
+            "spriteKey": "prop_ladder",
+            "label": "Ladder"
+          }
+        ]
+      }
     },
     {
       "id": "gym_roofcut",
@@ -105,7 +1182,187 @@
         "y": 16
       },
       "unlockIndex": 6,
-      "label": "Roof Ops — Cut"
+      "label": "Roof Ops — Cut",
+      "interior": {
+        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "width": 11,
+        "height": 9,
+        "walkable": [
+          0,
+          2
+        ],
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 7
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 8
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_roof_cut",
+            "name": "Truckie Park",
+            "tile": {
+              "x": 3,
+              "y": 5
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_roof",
+            "label": "Roof"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 5
+            },
+            "spriteKey": "prop_ladder",
+            "label": "Ladder"
+          }
+        ]
+      }
     }
   ],
   "npcs": [

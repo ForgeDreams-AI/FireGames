@@ -9,6 +9,7 @@ import { Theme } from './engine/Theme.js';
 import { UI } from './ui/UI.js';
 import { BootScene } from './scenes/BootScene.js';
 import { OverworldScene } from './scenes/OverworldScene.js';
+import { InteriorScene } from './scenes/InteriorScene.js';
 
 async function main() {
   const loading = document.getElementById('loading');
@@ -44,7 +45,7 @@ async function main() {
       height: '100%'
     },
     physics: { default: 'arcade', arcade: { debug: false } },
-    scene: [BootScene, OverworldScene]
+    scene: [BootScene, OverworldScene, InteriorScene]
   });
 
   game.registry.set('data', data);
@@ -64,15 +65,16 @@ async function main() {
   window.CoreSeven = { game, ui, model, storage: Storage, theme };
 }
 
-function overworld(game) { return game.registry.get('overworld'); }
+// The currently controllable scene (Overworld or an Interior).
+function active(game) { return game.registry.get('activeScene'); }
 
 function wireControls(game) {
   const dpad = document.getElementById('dpad');
   if (dpad) {
     dpad.querySelectorAll('[data-dir]').forEach(btn => {
       const dir = btn.getAttribute('data-dir');
-      const press = (e) => { e.preventDefault(); const o = overworld(game); if (o) o.setDir(dir); btn.classList.add('active'); };
-      const release = (e) => { e.preventDefault(); const o = overworld(game); if (o) o.clearDir(dir); btn.classList.remove('active'); };
+      const press = (e) => { e.preventDefault(); const o = active(game); if (o && o.setDir) o.setDir(dir); btn.classList.add('active'); };
+      const release = (e) => { e.preventDefault(); const o = active(game); if (o && o.clearDir) o.clearDir(dir); btn.classList.remove('active'); };
       btn.addEventListener('touchstart', press, { passive: false });
       btn.addEventListener('touchend', release, { passive: false });
       btn.addEventListener('touchcancel', release, { passive: false });
@@ -83,7 +85,7 @@ function wireControls(game) {
   }
   const actionBtn = document.getElementById('btn-action');
   if (actionBtn) {
-    const fire = (e) => { e.preventDefault(); const o = overworld(game); if (o) o.action(); };
+    const fire = (e) => { e.preventDefault(); const o = active(game); if (o && o.action) o.action(); };
     actionBtn.addEventListener('touchstart', fire, { passive: false });
     actionBtn.addEventListener('click', fire);
   }

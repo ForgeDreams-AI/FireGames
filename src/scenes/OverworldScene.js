@@ -11,6 +11,7 @@ export class OverworldScene extends Phaser.Scene {
 
   create() {
     this.registry.set('overworld', this);
+    this.registry.set('activeScene', this);
     const data = this.registry.get('data');
     this.theme = this.registry.get('theme');
     this.ui = this.registry.get('ui');
@@ -40,6 +41,15 @@ export class OverworldScene extends Phaser.Scene {
     this.facing = { x: 0, y: 1 };
     this.moving = false;
     this._wildTimer = 0;
+
+    // When we return from an interior, this scene is woken (not re-created):
+    // restore control + fade the camera back in.
+    this.events.on('wake', () => {
+      this.registry.set('activeScene', this);
+      this.touchDir = null; this.moving = false;
+      this.input.enabled = true;
+      this.cameras.main.fadeIn(170);
+    });
 
     this.ui.onOverworldReady && this.ui.onOverworldReady();
   }
@@ -157,7 +167,22 @@ export class OverworldScene extends Phaser.Scene {
   _enterGym(door) {
     const unlocked = this.isGymUnlocked(door.gym);
     if (!unlocked) { this.ui.toast(this.ui.lockedMessage(door.gym), 'warn'); return; }
-    this.ui.openGym(door.eventId);
+    this._enterInterior(door.gym);
+  }
+
+  // Enter transition: fade out + banner, then sleep this scene and launch the
+  // gym's interior. Returning wakes this scene (see the 'wake' handler).
+  _enterInterior(gym) {
+    if (this._transitioning) return;
+    this._transitioning = true;
+    this.input.enabled = false;
+    this.touchDir = null;
+    this.cameras.main.fadeOut(170);
+    this.cameras.main.once('camerafadeoutcomplete', () => {
+      this._transitioning = false;
+      this.scene.launch('Interior', { gymId: gym.id });
+      this.scene.sleep();
+    });
   }
 
   isGymUnlocked(gym) {

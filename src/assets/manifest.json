@@ -7,12 +7,22 @@
     "building": { "file": "", "shape": "tile", "colorKey": "building", "border": true },
     "pad":      { "file": "", "shape": "tile", "colorKey": "pad" },
     "padwall":  { "file": "", "shape": "tile", "colorKey": "padWall", "border": true },
-    "door":     { "file": "", "shape": "doormark", "colorKey": "door" }
+    "door":     { "file": "", "shape": "doormark", "colorKey": "door" },
+    "ifloor":   { "file": "", "shape": "tile", "colorKey": "pad" },
+    "iwall":    { "file": "", "shape": "tile", "colorKey": "padWall", "border": true },
+    "exit":     { "file": "", "shape": "doormark", "colorKey": "door" }
   },
   "sprites": {
     "player": { "file": "", "shape": "actor", "colorKey": "player", "w": 28, "h": 28, "label": "R" },
-    "rto":    { "file": "", "shape": "actor", "colorKey": "rto", "w": 28, "h": 28, "label": "RTO" },
+    "rto":    { "file": "", "shape": "actor", "colorKey": "rto", "w": 30, "h": 30, "label": "RTO" },
     "npc":    { "file": "", "shape": "actor", "colorKey": "npc", "w": 26, "h": 26, "label": "?" },
-    "wild":   { "file": "", "shape": "actor", "colorKey": "wild", "w": 24, "h": 24, "label": "!" }
+    "wild":   { "file": "", "shape": "actor", "colorKey": "wild", "w": 24, "h": 24, "label": "!" },
+    "signage": { "file": "", "shape": "actor", "colorKey": "warn", "w": 28, "h": 28, "label": "i" },
+    "prop_scba":      { "file": "", "shape": "actor", "colorKey": "accent", "w": 30, "h": 30 },
+    "prop_engine":    { "file": "", "shape": "actor", "colorKey": "building", "w": 30, "h": 30 },
+    "prop_hydrant":   { "file": "", "shape": "actor", "colorKey": "bad", "w": 26, "h": 30 },
+    "prop_standpipe": { "file": "", "shape": "actor", "colorKey": "sage", "w": 26, "h": 30 },
+    "prop_roof":      { "file": "", "shape": "actor", "colorKey": "pad", "w": 30, "h": 30 },
+    "prop_ladder":    { "file": "", "shape": "actor", "colorKey": "cream", "w": 22, "h": 32 }
   }
 }

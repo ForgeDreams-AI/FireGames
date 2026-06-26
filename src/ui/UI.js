@@ -72,42 +72,63 @@ export class UI {
     return h;
   }
 
-  // ================= DIALOGUE (study NPC teaching) =================
-  openDialogue(npcDef) {
-    const event = this.model.get(npcDef.eventId);
-    const steps = this.model.steps(npcDef.eventId, this.model.variantsFor(npcDef.eventId)[0]);
-    this.storage.markSeen(npcDef.eventId);
+  // Transient top banner (used by enter/exit transitions).
+  banner(text) {
+    const b = this.el('div', 'cs-banner-flash', text);
+    this.root.appendChild(b);
+    requestAnimationFrame(() => b.classList.add('show'));
+    setTimeout(() => { b.classList.remove('show'); setTimeout(() => b.remove(), 300); }, 1400);
+  }
+
+  // ================= GUIDED WALK-THROUGH (study NPC, teach-first) =================
+  // Overworld NPCs deliver this too.
+  openDialogue(npcDef) { this.openWalkthrough(npcDef.eventId, npcDef.name); }
+
+  openWalkthrough(eventId, speakerName) {
+    this.storage.markSeen(eventId);
+    if (this.model.hasVariants(eventId)) {
+      // pick the side first, then walk shared -> variant -> common tail in order
+      this._chooseVariantThen(eventId, (v) => this._runWalkthrough(eventId, v, speakerName), 'Which position are you learning?');
+    } else {
+      this._runWalkthrough(eventId, this.model.variantsFor(eventId)[0], speakerName);
+    }
+  }
+
+  _runWalkthrough(eventId, variant, speakerName) {
+    const event = this.model.get(eventId);
+    const steps = this.model.steps(eventId, variant);
     let i = 0;
 
     const wrap = this.el('div', 'cs-dialogue');
-    const speaker = this.el('div', 'cs-speaker', npcDef.name || 'Instructor');
+    const speaker = this.el('div', 'cs-speaker',
+      (speakerName || 'Instructor') + (this.model.hasVariants(eventId) ? ' · ' + prettyVariant(variant) : ''));
+    const counter = this.el('div', 'cs-sub');
     const body = this.el('div', 'cs-dialogue-body');
     const nav = this.el('div', 'cs-row');
-    wrap.appendChild(speaker); wrap.appendChild(body); wrap.appendChild(nav);
+    wrap.appendChild(speaker); wrap.appendChild(counter); wrap.appendChild(body); wrap.appendChild(nav);
 
     const render = () => {
       body.innerHTML = '';
       const s = steps[i];
-      const intro = this.el('div', 'cs-line', 'Step ' + s.order + ' of ' + steps.length + (s.critical ? '  ⚠ CRITICAL' : ''));
-      if (s.critical) intro.classList.add('crit');
-      const stepLine = this.el('div', 'cs-line strong', s.step);
-      body.appendChild(intro);
-      body.appendChild(stepLine);
-      // how-to (teaching) — degrade gracefully when empty
+      counter.textContent = event.name + ' — step ' + s.order + ' of ' + steps.length;
+      if (s.critical) {
+        const flag = this.el('div', 'cs-critflag', '⚠ SAFETY-CRITICAL — miss this on the real eval and the attempt is over.');
+        body.appendChild(flag);
+      }
+      body.appendChild(this.el('div', 'cs-line strong', s.step));
       const ht = (s.howto && s.howto.trim()) ? s.howto
-        : 'Content coming soon — drill the steps to master it.';
+        : 'Drill this step to master it — teaching notes coming soon.';
       body.appendChild(this.el('div', 'cs-line teach', ht));
       if (s.hint && s.hint.trim()) {
         const hintRow = this.el('div', 'cs-hint');
         const q = this.button('?', () => hintRow.classList.toggle('open'), 'cs-hint-toggle');
-        const txt = this.el('span', 'cs-hint-text', 'Cue: ' + s.hint);
-        hintRow.appendChild(q); hintRow.appendChild(txt);
+        hintRow.appendChild(q); hintRow.appendChild(this.el('span', 'cs-hint-text', 'Cue: ' + s.hint));
         body.appendChild(hintRow);
       }
     };
 
-    const closeBtn = this.button('Done', () => panel.close(), 'ghost');
     const prev = this.button('‹ Prev', () => { if (i > 0) { i--; render(); } });
+    const closeBtn = this.button('Done', () => panel.close(), 'ghost');
     const next = this.button('Next ›', () => { if (i < steps.length - 1) { i++; render(); } else panel.close(); });
     nav.appendChild(prev); nav.appendChild(closeBtn); nav.appendChild(next);
 
@@ -115,30 +136,39 @@ export class UI {
     var panel = this._openPanel(wrap, { panelClass: 'dialogue-panel' });
   }
 
-  // ================= GYM MENU =================
-  openGym(eventId) {
+  // ================= RTO ENCOUNTER (intro + Drill/Graded prompt) =================
+  openRTOEncounter(eventId) {
     const event = this.model.get(eventId);
     this.storage.markSeen(eventId);
     const earned = this.storage.hasBadge(eventId);
     const best = this.storage.bestScore(eventId);
 
-    const wrap = this.el('div');
-    wrap.appendChild(this.header(event.name, event.badgeName + ' · ' + event.standardRef +
-      (earned ? '  ✔ EARNED' : '') + (best ? '  · best ' + best + '%' : '')));
+    const intro = (event.rtoIntro && event.rtoIntro.trim()) ? event.rtoIntro
+      : 'Ready for your ' + event.name + ' evaluation? Produce the graded steps in order. Miss a critical and the attempt is over.';
+    const modePrompt = (event.rtoModePrompt && event.rtoModePrompt.trim()) ? event.rtoModePrompt
+      : 'Run it as a DRILL (practice, no penalty) or GRADED (timed badge run, critical-fail live).';
+
+    const wrap = this.el('div', 'cs-dialogue');
+    wrap.appendChild(this.el('div', 'cs-speaker', (event.name) + ' · RTO Evaluator'));
+    wrap.appendChild(this.el('div', 'cs-sub', event.badgeName + ' · ' + event.standardRef + ' · limit ' +
+      formatTime(event.timeLimitSeconds) + ' · pass ' + Math.round((this.config.passThreshold || 0.65) * 100) + '%' +
+      (earned ? '  · 🏅 earned' : '') + (best ? '  · best ' + best + '%' : '')));
+    wrap.appendChild(this.el('div', 'cs-line strong', intro));
+    wrap.appendChild(this.el('div', 'cs-line teach', modePrompt));
 
     const menu = this.el('div', 'cs-menu');
-    menu.appendChild(this.button('🎯 RTO Evaluator (Graded Badge Run)', () => { panel.close(); this._chooseVariantThen(eventId, (v) => this.startBattle(eventId, v, 'graded')); }, 'primary'));
-    menu.appendChild(this.button('📚 Study / Drill', () => { panel.close(); this.openDrillMenu(eventId); }));
-    menu.appendChild(this.button('📋 Reference (checklist)', () => { this.openReference(eventId); }));
-    menu.appendChild(this.button('Leave', () => panel.close(), 'ghost'));
+    menu.appendChild(this.button('🎯 GRADED — RTO badge run', () => { panel.close(); this._chooseVariantThen(eventId, (v) => this.startBattle(eventId, v, 'graded')); }, 'primary'));
+    menu.appendChild(this.button('📚 DRILL — practice (no penalty)', () => { panel.close(); this.openDrillMenu(eventId); }));
+    menu.appendChild(this.button('📋 Reference checklist', () => this.openReference(eventId)));
+    menu.appendChild(this.button('Step back', () => panel.close(), 'ghost'));
     wrap.appendChild(menu);
-    var panel = this._openPanel(wrap, { dim: true });
+    var panel = this._openPanel(wrap, { panelClass: 'dialogue-panel' });
   }
 
-  _chooseVariantThen(eventId, cb) {
+  _chooseVariantThen(eventId, cb, title) {
     if (!this.model.hasVariants(eventId)) { cb(this.model.variantsFor(eventId)[0]); return; }
     const wrap = this.el('div');
-    wrap.appendChild(this.header('Choose your position', this.model.get(eventId).name));
+    wrap.appendChild(this.header(title || 'Choose your position', this.model.get(eventId).name));
     const menu = this.el('div', 'cs-menu');
     this.model.variantsFor(eventId).forEach(v => {
       menu.appendChild(this.button(prettyVariant(v), () => { panel.close(); cb(v); }, 'primary'));
