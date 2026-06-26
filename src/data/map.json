@@ -219,7 +219,7 @@
               "y": 3
             },
             "spriteKey": "prop_scba",
-            "label": "SCBA Set"
+            "label": "SCBA Bottle"
           }
         ]
       }
@@ -408,8 +408,8 @@
               "x": 8,
               "y": 5
             },
-            "spriteKey": "prop_wrench",
-            "label": "Hydrant Wrench"
+            "spriteKey": "prop_hydrant",
+            "label": "Hydrant"
           }
         ]
       }
