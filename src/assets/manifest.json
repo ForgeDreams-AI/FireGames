@@ -1,12 +1,12 @@
 {
   "_comment": "ART SWAP LAYER. Every sprite/tile the engine draws is listed here by key. While 'file' is empty the engine draws a GREYBOX texture from the spec (color/shape/size from the active theme). When 'file' is set, that image is loaded and SCALED to fit (tiles -> tileSize square; sprites -> their w/h box, aspect preserved), so art of any pixel size drops in with no code changes. Real art below is from Kenney (CC0): pico8 city tiles + pixel vehicle pack. Per-key in-app overrides (Settings > Graphics > Replace art) take priority over these.",
   "tiles": {
-    "ground":   { "file": "tiles/ground.png",   "shape": "tile", "colorKey": "ground" },
-    "road":     { "file": "tiles/road.png",     "shape": "tile", "colorKey": "road" },
-    "fence":    { "file": "",                    "shape": "tile", "colorKey": "fence", "border": true },
-    "building": { "file": "tiles/wall.png",      "shape": "tile", "colorKey": "building", "border": true },
-    "pad":      { "file": "tiles/concrete.png",  "shape": "tile", "colorKey": "pad" },
-    "padwall":  { "file": "tiles/wall.png",      "shape": "tile", "colorKey": "padWall", "border": true },
+    "ground":   { "file": "tiles/ground_desert.png", "shape": "tile", "colorKey": "ground" },
+    "road":     { "file": "tiles/asphalt.png",       "shape": "tile", "colorKey": "road" },
+    "fence":    { "file": "tiles/chainlink.png",     "shape": "tile", "colorKey": "fence", "border": true },
+    "building": { "file": "tiles/building_fire.png", "shape": "tile", "colorKey": "building", "border": true },
+    "pad":      { "file": "tiles/concrete.png",      "shape": "tile", "colorKey": "pad" },
+    "padwall":  { "file": "tiles/curb.png",          "shape": "tile", "colorKey": "padWall", "border": true },
     "door":     { "file": "",                    "shape": "doormark", "colorKey": "door" },
     "ifloor":   { "file": "tiles/concrete.png",  "shape": "tile", "colorKey": "pad" },
     "iwall":    { "file": "tiles/wall.png",      "shape": "tile", "colorKey": "padWall", "border": true },
@@ -32,7 +32,7 @@
     "prop_saw":       { "file": "sprites/saw.png", "shape": "actor", "colorKey": "warn", "w": 32, "h": 26 },
     "prop_axe":       { "file": "sprites/axe.png", "shape": "actor", "colorKey": "rto", "w": 30, "h": 26 },
     "prop_hydrant":   { "file": "sprites/hydrant.png", "shape": "actor", "colorKey": "bad", "w": 26, "h": 32 },
-    "prop_standpipe": { "file": "", "shape": "actor", "colorKey": "sage", "w": 26, "h": 30 },
+    "prop_standpipe": { "file": "sprites/standpipe.png", "shape": "actor", "colorKey": "sage", "w": 24, "h": 32 },
     "prop_roof":      { "file": "", "shape": "actor", "colorKey": "pad", "w": 30, "h": 30 },
     "prop_ladder":    { "file": "", "shape": "actor", "colorKey": "cream", "w": 22, "h": 32 }
   }

@@ -1088,8 +1088,8 @@
               "x": 7,
               "y": 3
             },
-            "spriteKey": "prop_nozzle",
-            "label": "Nozzle"
+            "spriteKey": "prop_standpipe",
+            "label": "Standpipe / Wye"
           },
           {
             "tile": {
@@ -1362,8 +1362,8 @@
               "x": 3,
               "y": 3
             },
-            "spriteKey": "prop_engine",
-            "label": "Engine"
+            "spriteKey": "prop_standpipe",
+            "label": "Standpipe / Wye"
           },
           {
             "tile": {
