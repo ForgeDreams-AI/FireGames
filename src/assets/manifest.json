@@ -1,0 +1,39 @@
+{
+  "_comment": "ART SWAP LAYER. Every sprite/tile the engine draws is listed here by key. While 'file' is empty the engine draws a GREYBOX texture from the spec (color/shape/size from the active theme). When 'file' is set, that image is loaded and SCALED to fit (tiles -> tileSize square; sprites -> their w/h box, aspect preserved), so art of any pixel size drops in with no code changes. Real art below is from Kenney (CC0): pico8 city tiles + pixel vehicle pack. Per-key in-app overrides (Settings > Graphics > Replace art) take priority over these.",
+  "tiles": {
+    "ground":   { "file": "tiles/ground_desert.png", "shape": "tile", "colorKey": "ground" },
+    "road":     { "file": "tiles/asphalt.png",       "shape": "tile", "colorKey": "road" },
+    "fence":    { "file": "tiles/chainlink.png",     "shape": "tile", "colorKey": "fence", "border": true },
+    "building": { "file": "tiles/building_fire.png", "shape": "tile", "colorKey": "building", "border": true },
+    "pad":      { "file": "tiles/concrete.png",      "shape": "tile", "colorKey": "pad" },
+    "padwall":  { "file": "tiles/curb.png",          "shape": "tile", "colorKey": "padWall", "border": true },
+    "door":     { "file": "",                    "shape": "doormark", "colorKey": "door" },
+    "ifloor":   { "file": "tiles/concrete.png",  "shape": "tile", "colorKey": "pad" },
+    "iwall":    { "file": "tiles/wall.png",      "shape": "tile", "colorKey": "padWall", "border": true },
+    "exit":     { "file": "",                    "shape": "doormark", "colorKey": "door" },
+    "class_floor": { "file": "tiles/class_floor.png", "shape": "tile", "colorKey": "pad" },
+    "class_wall":  { "file": "tiles/class_wall.png",  "shape": "tile", "colorKey": "building", "border": true },
+    "bay_floor":   { "file": "tiles/bay_floor.png",   "shape": "tile", "colorKey": "pad" },
+    "bay_wall":    { "file": "tiles/bay_wall.png",    "shape": "tile", "colorKey": "padWall", "border": true },
+    "baydoor":     { "file": "tiles/baydoor.png",     "shape": "doormark", "colorKey": "sage" }
+  },
+  "sprites": {
+    "player": { "file": "sprites/player.png", "shape": "actor", "colorKey": "player", "w": 28, "h": 28, "label": "R" },
+    "rto":    { "file": "sprites/rto.png",    "shape": "actor", "colorKey": "rto", "w": 30, "h": 30, "label": "RTO" },
+    "npc":    { "file": "sprites/npc.png",    "shape": "actor", "colorKey": "npc", "w": 26, "h": 26, "label": "?" },
+    "wild":   { "file": "sprites/wild.png",   "shape": "actor", "colorKey": "wild", "w": 24, "h": 24, "label": "!" },
+    "signage": { "file": "sprites/sign.png",  "shape": "actor", "colorKey": "warn", "w": 28, "h": 28, "label": "i" },
+    "whiteboard": { "file": "sprites/whiteboard.png", "shape": "actor", "colorKey": "cream", "w": 30, "h": 20 },
+    "desk":       { "file": "sprites/desk.png", "shape": "actor", "colorKey": "building", "w": 28, "h": 20 },
+    "prop_scba":      { "file": "sprites/bottle.png", "shape": "actor", "colorKey": "accent", "w": 26, "h": 32 },
+    "prop_engine":    { "file": "sprites/firetruck.png", "shape": "actor", "colorKey": "building", "w": 32, "h": 32 },
+    "prop_nozzle":    { "file": "sprites/nozzle.png", "shape": "actor", "colorKey": "bad", "w": 30, "h": 26 },
+    "prop_wrench":    { "file": "sprites/wrench.png", "shape": "actor", "colorKey": "sage", "w": 30, "h": 26 },
+    "prop_saw":       { "file": "sprites/saw.png", "shape": "actor", "colorKey": "warn", "w": 32, "h": 26 },
+    "prop_axe":       { "file": "sprites/axe.png", "shape": "actor", "colorKey": "rto", "w": 30, "h": 26 },
+    "prop_hydrant":   { "file": "sprites/hydrant.png", "shape": "actor", "colorKey": "bad", "w": 26, "h": 32 },
+    "prop_standpipe": { "file": "sprites/standpipe.png", "shape": "actor", "colorKey": "sage", "w": 24, "h": 32 },
+    "prop_roof":      { "file": "", "shape": "actor", "colorKey": "pad", "w": 30, "h": 30 },
+    "prop_ladder":    { "file": "", "shape": "actor", "colorKey": "cream", "w": 22, "h": 32 }
+  }
+}

@@ -1,0 +1,1477 @@
+{
+  "events": [
+    {
+      "id": "scba",
+      "name": "SCBA",
+      "badgeName": "SCBA Badge",
+      "standardRef": "M.P. 1012.05",
+      "timeLimitSeconds": 35,
+      "variants": [
+        "default"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "Begin in starting position — bottle on ground, recruit squatting or on knees.",
+          "critical": false,
+          "hint": "Start low: bottle down, you squatting or kneeling.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 2,
+          "type": "ordered",
+          "step": "Turn the cylinder valve on fully; listen for low-pressure indicator + PASS activation; bypass valve fully shut off.",
+          "critical": true,
+          "hint": "Valve full open, hear the alarm chirp, bypass closed.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 3,
+          "type": "ordered",
+          "step": "Position SCBA on back using the over-the-head method.",
+          "critical": false,
+          "hint": "Over-the-head onto your back.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 4,
+          "type": "ordered",
+          "step": "Fasten and properly adjust straps.",
+          "critical": false,
+          "hint": "Buckle and snug all straps.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 5,
+          "type": "ordered",
+          "step": "Don and secure face piece.",
+          "critical": false,
+          "hint": "Face piece on and secured.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 6,
+          "type": "ordered",
+          "step": "Check the face piece for proper seal.",
+          "critical": true,
+          "hint": "Confirm the seal before air.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 7,
+          "type": "ordered",
+          "step": "Connect mask-mounted regulator and start air flow.",
+          "critical": true,
+          "hint": "Click in the regulator, get on air.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 8,
+          "type": "inspection",
+          "step": "Protective ensemble (except gloves) properly donned, NO skin exposed, collar fastened, chin strap secure under chin.",
+          "critical": true,
+          "hint": "No skin, collar up, chin strap tight.",
+          "howto": {
+            "default": ""
+          },
+          "options": [
+            "All met: no skin exposed, collar fastened, chin strap secure",
+            "Skin exposed at neck",
+            "Collar unfastened",
+            "Chin strap loose"
+          ]
+        },
+        {
+          "order": 9,
+          "type": "inspection",
+          "step": "Proper face-piece seal — no air leaks when head turns/nods or with light tug on the regulator.",
+          "critical": true,
+          "hint": "Turn, nod, tug — no leaks.",
+          "howto": {
+            "default": ""
+          },
+          "options": [
+            "Sealed: no leaks on turn, nod, or regulator tug",
+            "Leak when turning head",
+            "Leak on regulator tug"
+          ]
+        },
+        {
+          "order": 10,
+          "type": "ordered",
+          "step": "Complete all tasks within the 35-second limit, all safety procedures followed.",
+          "critical": true,
+          "hint": "Under 35 seconds, safely.",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "rtoIntro": "Ready for your SCBA evaluation? Bottle to face piece, in order. Miss a critical and you are done.",
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
+    },
+    {
+      "id": "quick_attack_plug",
+      "name": "Quick Attack — Plug Position",
+      "badgeName": "Plug Position Badge",
+      "standardRef": "M.P. 1012.00",
+      "timeLimitSeconds": 220,
+      "variants": [
+        "captain_side",
+        "engineer_side"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "Buckle up in the truck; ride around the block; wait for a complete stop (brake set) before moving.",
+          "critical": true,
+          "hint": "Belted, full stop and brake set before you move.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 2,
+          "type": "ordered",
+          "step": "Exit the vehicle yelling, looking both ways.",
+          "critical": true,
+          "hint": "Yell and look both ways getting off.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 3,
+          "type": "ordered",
+          "step": "Back of truck: RIGHT hand grabs the wrench, LEFT hand pulls the strap off so the hose is loose. Right hand grabs the Humat handle; turn right, grab the supply line with the left arm, let it fall on the left shoulder.",
+          "critical": false,
+          "hint": "Right=wrench/Humat, left=strap and supply on left shoulder.",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "variantSteps": {
+        "captain_side": [
+          {
+            "order": 1,
+            "type": "ordered",
+            "step": "Walk even with the hydrant — 7 steps out (or until you hear the hose fall); turn left, let the hose fall off the left shoulder, guide it around the hydrant; walk 5 steps past the hydrant.",
+            "critical": false,
+            "hint": "7 out, drop hose around hydrant, 5 past.",
+            "howto": {
+              "captain_side": "Pacing it out (7 steps then 5 past) keeps consistent slack so the supply line drops cleanly around the hydrant and the truck can keep rolling."
+            }
+          },
+          {
+            "order": 2,
+            "type": "ordered",
+            "step": "Face the hydrant; make sure the hose is straight out of the Humat; yell + wave the truck to GO.",
+            "critical": false,
+            "hint": "Hose straight from the Humat, wave the truck off.",
+            "howto": {
+              "captain_side": "A straight pull out of the Humat prevents binding, and the clear wave/yell tells the driver it is safe to lay out and go."
+            }
+          },
+          {
+            "order": 3,
+            "type": "ordered",
+            "step": "When the coupling falls: go ~2/3 down the hose toward the hydrant, grab it, walk back around, throw it to ~2 o'clock away from the truck — keep a SAFETY LOOP around the hydrant.",
+            "critical": true,
+            "hint": "2/3 down, throw to 2 o'clock, keep the safety loop.",
+            "howto": {
+              "captain_side": "The safety loop around the hydrant absorbs the shock when the line charges so it cannot whip or pull free under pressure."
+            }
+          },
+          {
+            "order": 4,
+            "type": "ordered",
+            "step": "Set the Humat outside your work space, to your right. Take the wrench, loosen the steamer cap; place + tighten the wrench on top of the hydrant; go back, hand-remove the steamer cap.",
+            "critical": false,
+            "hint": "Humat to the right, break the steamer cap, hand it off.",
+            "howto": {
+              "captain_side": "Staging the Humat clear of your hands and breaking the cap loose with the wrench first lets you spin it off quickly by hand."
+            }
+          }
+        ],
+        "engineer_side": [
+          {
+            "order": 1,
+            "type": "ordered",
+            "step": "When even with the hydrant: go 5 steps out, turn, run back toward the hydrant until even again; then go 3 steps, turn, do the same.",
+            "critical": false,
+            "hint": "5 out and back, then 3 out and back.",
+            "howto": {
+              "engineer_side": "Working the line out and back builds the slack you need on the engineer side so the supply can be flicked around the hydrant cleanly."
+            }
+          },
+          {
+            "order": 2,
+            "type": "ordered",
+            "step": "Put it down, face it, yell \"GO GO GO.\"",
+            "critical": false,
+            "hint": "Set it, face the hydrant, yell GO GO GO.",
+            "howto": {
+              "engineer_side": "Facing the hydrant and calling the truck off signals the driver the lay is set and it is safe to pull."
+            }
+          },
+          {
+            "order": 3,
+            "type": "ordered",
+            "step": "Go about halfway; pick up the supply line with the LEFT hand, flick it up and around the hydrant; step with the LEFT foot, turn, do a DO-SI-DO (right to left) — face it, and while doing the do-si-do with the supply on the left hand, throw it out into the street.",
+            "critical": true,
+            "hint": "Left hand flick around, do-si-do, throw to the street.",
+            "howto": {
+              "engineer_side": "The do-si-do (right to left around the hydrant) sets the safety loop so the charged line cannot whip, while the left-hand throw clears slack into the street."
+            }
+          },
+          {
+            "order": 4,
+            "type": "ordered",
+            "step": "Place the Humat to your RIGHT-hand side, out of your workspace.",
+            "critical": false,
+            "hint": "Humat to the right, clear of your hands.",
+            "howto": {
+              "engineer_side": "Staging the Humat clear of your workspace keeps your hands free to work the steamer cap and connection."
+            }
+          }
+        ]
+      },
+      "commonTail": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "When the cap hits the ground: Humat in right hand onto the steamer grooves; left hand, go right of the hydrant, tighten the dog ears (~7 rotations right) until fully locked.",
+          "critical": false,
+          "hint": "Humat on the grooves, ~7 turns right, fully locked.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 2,
+          "type": "choice",
+          "step": "Go around the hydrant inside your safety loop; yell THREE things: (1) valve shut, (2) clamp on the supply line, (3) water coming.",
+          "critical": true,
+          "hint": "Yell three: valve shut, clamp on, water coming.",
+          "howto": {
+            "default": ""
+          },
+          "options": [
+            "Valve shut, clamp on supply line, water coming",
+            "Valve open, clamp off, hold water",
+            "Cap off, dog ears tight, truck go",
+            "Hydrant on, line charged, ready to fight fire"
+          ]
+        },
+        {
+          "order": 3,
+          "type": "ordered",
+          "step": "Turn the hydrant on — all the way, until no rotations left.",
+          "critical": false,
+          "hint": "Open the hydrant fully, no turns left.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 4,
+          "type": "ordered",
+          "step": "Check the supply line for kinks; address any.",
+          "critical": false,
+          "hint": "Walk the line, clear any kinks.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 5,
+          "type": "ordered",
+          "step": "Back to the truck; place the wrench on the RIGHT side of the rear bumper.",
+          "critical": false,
+          "hint": "Wrench on the right of the rear bumper.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 6,
+          "type": "ordered",
+          "step": "Open the bottle door; pull SCBA, turn fully on, over the head, buckle in; shut the door.",
+          "critical": true,
+          "hint": "SCBA on full, over the head, buckled, door shut.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 7,
+          "type": "ordered",
+          "step": "Yell \"what tool do you need?\" → RTO assigns → open door, take tool, shut door.",
+          "critical": false,
+          "hint": "Ask for the tool, grab it, shut the door.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 8,
+          "type": "ordered",
+          "step": "Run to your partner; check them off — no skin or strap showing on their mask.",
+          "critical": true,
+          "hint": "Check partner: no skin, no strap on the mask.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 9,
+          "type": "ordered",
+          "step": "Don your own mask; gloves on, click in, on air.",
+          "critical": true,
+          "hint": "Mask, gloves, click in, on air.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 10,
+          "type": "ordered",
+          "step": "Take tools, stand, yell \"READY TO FIGHT FIRE.\"",
+          "critical": false,
+          "hint": "Tools up, stand, call ready to fight fire.",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "rtoIntro": "Plug position. Pick your side and work the hydrant clean. Lose the safety loop and the run is over.",
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
+    },
+    {
+      "id": "quick_attack_nozzle",
+      "name": "Quick Attack — Nozzle Position",
+      "badgeName": "Nozzle Position Badge",
+      "standardRef": "M.P. 1012.00",
+      "timeLimitSeconds": 180,
+      "variants": [
+        "default"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "Seat-belted in the apparatus.",
+          "critical": true,
+          "hint": "Belted before the truck moves.",
+          "howto": {
+            "default": "Always belted before the truck moves."
+          }
+        },
+        {
+          "order": 2,
+          "type": "ordered",
+          "step": "Truck stops fully → unbuckle; getting off, look both ways and verbalize it.",
+          "critical": true,
+          "hint": "Full stop, then look both ways out loud.",
+          "howto": {
+            "default": "Complete stop first; eyes and voice both ways."
+          }
+        },
+        {
+          "order": 3,
+          "type": "ordered",
+          "step": "Back of truck (the clamp): pull up on the pack strap with RIGHT hand, slide the clamp out with LEFT.",
+          "critical": false,
+          "hint": "Right lifts the strap, left slides the clamp out.",
+          "howto": {
+            "default": "Lifting the pack strap frees the clamp so the off hand can slide it out cleanly."
+          }
+        },
+        {
+          "order": 4,
+          "type": "ordered",
+          "step": "Open the clamp; ask where your danger is → RTO points it out.",
+          "critical": false,
+          "hint": "Open clamp, ask where the danger is.",
+          "howto": {
+            "default": "Confirming the hazard direction up front orients your clamp and hose lay toward the fire."
+          }
+        },
+        {
+          "order": 5,
+          "type": "ordered",
+          "step": "Place clamp 2–3 ft behind first coupling, base toward the danger; hose centered → turn right 3½ times; foot closest to the truck on the clamp.",
+          "critical": false,
+          "hint": "2–3 ft back, base to danger, 3½ turns, foot on it.",
+          "howto": {
+            "default": "Seating the clamp behind the coupling with the base toward the fire holds the line so it can be broken and charged safely."
+          }
+        },
+        {
+          "order": 6,
+          "type": "choice",
+          "step": "Clamp on → verbalize \"Clamp on.\" Back to truck, throw SCBA, close compartment door.",
+          "critical": false,
+          "hint": "Call \"Clamp on,\" then grab SCBA.",
+          "howto": {
+            "default": "Calling out the clamp confirms the line is secured before you leave it to don SCBA."
+          },
+          "options": [
+            "Clamp on",
+            "Clamp off",
+            "Water coming",
+            "Valve shut"
+          ]
+        },
+        {
+          "order": 7,
+          "type": "ordered",
+          "step": "Grab nozzle, bail closed → verbalize it. Cross it in front of chest, loop under the arm FARTHEST from the apparatus. Swim the excess line; stab the BIG loop, grab the SMALL loop. (Swim, Stab, Grab.)",
+          "critical": false,
+          "hint": "Bail closed, cross chest, Swim-Stab-Grab.",
+          "howto": {
+            "default": "Crossing the nozzle and looping under the far arm sets up the Swim-Stab-Grab so you carry the working length without tangling."
+          }
+        },
+        {
+          "order": 8,
+          "type": "ordered",
+          "step": "Running the line: hand + shoulder HIGH; feel tension → drop ONE loop (NOT both); keep running to tension on the second loop.",
+          "critical": false,
+          "hint": "Shoulder high, drop ONE loop at tension.",
+          "howto": {
+            "default": "Dropping a single loop at tension feeds hose smoothly; dropping both at once piles slack and tangles the stretch."
+          }
+        },
+        {
+          "order": 9,
+          "type": "ordered",
+          "step": "Line stretched → bail still closed, verbalize; call for water, foot on the line.",
+          "critical": true,
+          "hint": "Bail closed, call water, foot on the line.",
+          "howto": {
+            "default": "Foot on the line holds it while it charges so the nozzle reaction cannot pull it out of position."
+          }
+        },
+        {
+          "order": 10,
+          "type": "ordered",
+          "step": "Mask up.",
+          "critical": false,
+          "hint": "Don the face piece.",
+          "howto": {
+            "default": "Mask up before the line is charged so you are ready to advance on air."
+          }
+        },
+        {
+          "order": 11,
+          "type": "inspection",
+          "step": "Full PPE + line charged → straight stream (\"right to fight\"); bleed the line (open + close).",
+          "critical": true,
+          "hint": "Full PPE, straight stream, bleed the line.",
+          "howto": {
+            "default": "Bleeding air and checking a straight stream confirms a solid charged line before you advance to fight fire."
+          },
+          "options": [
+            "Full PPE, no skin, line charged, straight stream, bled",
+            "Skin exposed, line charged",
+            "Line not charged, stream on fog",
+            "Line not bled, no straight stream"
+          ]
+        },
+        {
+          "order": 12,
+          "type": "ordered",
+          "step": "\"Ready to fight fire.\"",
+          "critical": false,
+          "hint": "Call ready to fight fire.",
+          "howto": {
+            "default": "The final callout signals you are on air, charged, and ready to make entry."
+          }
+        }
+      ],
+      "rtoIntro": "Nozzle position. Swim, stab, grab — line stretched, foot on it, then water. Show me.",
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
+    },
+    {
+      "id": "standpipe_front",
+      "name": "Horizontal Standpipe — Front Seat Position",
+      "badgeName": "Standpipe Front Seat Badge",
+      "standardRef": "M.P. 1012.00",
+      "timeLimitSeconds": 240,
+      "variants": [
+        "default"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "SCBA ready (bottle full/on, straps ready).",
+          "critical": false,
+          "hint": "Bottle full and on, straps ready.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 2,
+          "type": "ordered",
+          "step": "Seated and belted, radio in front pocket.",
+          "critical": true,
+          "hint": "Belted, radio in the front pocket.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 3,
+          "type": "ordered",
+          "step": "Wait for complete stop.",
+          "critical": true,
+          "hint": "Full stop before moving.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 4,
+          "type": "ordered",
+          "step": "Remove belt + look both ways.",
+          "critical": true,
+          "hint": "Belt off, look both ways.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 5,
+          "type": "ordered",
+          "step": "Open SCBA cylinder valve fully + don + close compartment.",
+          "critical": false,
+          "hint": "Valve full open, don, shut the door.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 6,
+          "type": "choice",
+          "step": "Rear of truck, verbalize valves closed.",
+          "critical": false,
+          "hint": "Call \"Valves closed\" at the rear.",
+          "howto": {
+            "default": ""
+          },
+          "options": [
+            "Valves closed",
+            "Valves open",
+            "Water coming",
+            "Clamp on"
+          ]
+        },
+        {
+          "order": 7,
+          "type": "ordered",
+          "step": "Pull stacked/strapped 2½\" hose onto shoulder OPPOSITE the fire.",
+          "critical": false,
+          "hint": "2½\" onto the shoulder away from the fire.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 8,
+          "type": "ordered",
+          "step": "Return for engineer's loop, extend, drop loop at tension.",
+          "critical": false,
+          "hint": "Grab engineer's loop, extend, drop at tension.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 9,
+          "type": "ordered",
+          "step": "Remove velcro, flake until 200' extended.",
+          "critical": false,
+          "hint": "Velcro off, flake out to 200 feet.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 10,
+          "type": "ordered",
+          "step": "Verbalize valves closed again.",
+          "critical": false,
+          "hint": "Call \"Valves closed\" again.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 11,
+          "type": "ordered",
+          "step": "Protect gated wye by stepping on uncharged hose directly behind it — never straddle.",
+          "critical": true,
+          "hint": "Foot behind the wye, never straddle.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 12,
+          "type": "ordered",
+          "step": "Take female coupling from nozzle position, stand on attack line, connect to gated wye.",
+          "critical": false,
+          "hint": "Take female coupling, stand on line, connect to wye.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 13,
+          "type": "ordered",
+          "step": "Only after 2½\" charged, remove foot.",
+          "critical": true,
+          "hint": "Keep your foot on until the 2½\" is charged.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 14,
+          "type": "ordered",
+          "step": "After second loop dropped, verbalize \"WATER!\" and open the gated wye valve charging the attack line.",
+          "critical": false,
+          "hint": "Drop second loop, call WATER, open the wye.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 15,
+          "type": "ordered",
+          "step": "Proceed checking for kinks, then don SCBA face piece + regulator; check nozzle person ready.",
+          "critical": false,
+          "hint": "Clear kinks, mask up, check the nozzle person.",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "rtoIntro": "Front seat on the standpipe. Stretch it, protect that gated wye, and never straddle a line.",
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
+    },
+    {
+      "id": "standpipe_nozzle",
+      "name": "Horizontal Standpipe — Nozzle Position",
+      "badgeName": "Standpipe Nozzle Badge",
+      "standardRef": "M.P. 1012.00",
+      "timeLimitSeconds": 240,
+      "variants": [
+        "default"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "SCBA ready.",
+          "critical": false,
+          "hint": "Bottle on, straps ready.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 2,
+          "type": "ordered",
+          "step": "Seated, belted, radio stowed.",
+          "critical": true,
+          "hint": "Belted with radio stowed.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 3,
+          "type": "ordered",
+          "step": "Wait for complete stop.",
+          "critical": true,
+          "hint": "Full stop before moving.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 4,
+          "type": "ordered",
+          "step": "Look both ways.",
+          "critical": true,
+          "hint": "Look both ways getting off.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 5,
+          "type": "ordered",
+          "step": "Remove + carry hose clamp on the latch side.",
+          "critical": false,
+          "hint": "Carry the clamp latch-side.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 6,
+          "type": "ordered",
+          "step": "Position clamp 2–3' behind first coupling, more than 10' behind the tailboard.",
+          "critical": false,
+          "hint": "2–3' behind coupling, 10'+ behind tailboard.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 7,
+          "type": "ordered",
+          "step": "Apply the clamp.",
+          "critical": false,
+          "hint": "Clamp the line.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 8,
+          "type": "ordered",
+          "step": "Foot on clamp base, latch side, \"facing the danger\" (hydrant facing fire), screw down tight.",
+          "critical": false,
+          "hint": "Foot on base, face the danger, screw tight.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 9,
+          "type": "ordered",
+          "step": "Don SCBA + close compartment.",
+          "critical": false,
+          "hint": "Don SCBA, shut the door.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 10,
+          "type": "ordered",
+          "step": "Butt-to-butt with apparatus at hose bed + fire location.",
+          "critical": false,
+          "hint": "Butt-to-butt at the bed toward the fire.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 11,
+          "type": "ordered",
+          "step": "Nozzle crossed in front of chest; swim, stab, grab.",
+          "critical": false,
+          "hint": "Cross chest, Swim-Stab-Grab.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 12,
+          "type": "choice",
+          "step": "Verbalize bail closed.",
+          "critical": false,
+          "hint": "Call \"Bail closed.\"",
+          "howto": {
+            "default": ""
+          },
+          "options": [
+            "Bail closed",
+            "Bail open",
+            "Water coming",
+            "Valves closed"
+          ]
+        },
+        {
+          "order": 13,
+          "type": "ordered",
+          "step": "Clear hose out and away from the bed.",
+          "critical": false,
+          "hint": "Pull hose clear of the bed.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 14,
+          "type": "ordered",
+          "step": "Clear attack line from the cross-lay bed.",
+          "critical": false,
+          "hint": "Clear the attack line from the cross-lay.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 15,
+          "type": "ordered",
+          "step": "Wait for engineer to break line at the pigtail; take the female coupling.",
+          "critical": false,
+          "hint": "Engineer breaks at pigtail, take the female.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 16,
+          "type": "ordered",
+          "step": "Proceed to the gated wye; do not drop loops.",
+          "critical": false,
+          "hint": "Head to the wye, hold your loops.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 17,
+          "type": "ordered",
+          "step": "Approaching the wye, assure female coupling + firefighter on the same side.",
+          "critical": false,
+          "hint": "Female coupling and firefighter same side.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 18,
+          "type": "ordered",
+          "step": "Hand coupling to firefighter at the wye; proceed to the fire.",
+          "critical": false,
+          "hint": "Hand off coupling, advance to the fire.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 19,
+          "type": "ordered",
+          "step": "After loose hose passes the wye, drop the first loop at the right time.",
+          "critical": false,
+          "hint": "Drop the first loop after hose passes the wye.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 20,
+          "type": "ordered",
+          "step": "Pull until the second loop tightens, then release from the elbow; extend remainder.",
+          "critical": false,
+          "hint": "Second loop tight, release from elbow, extend.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 21,
+          "type": "ordered",
+          "step": "Verbalize bail closed.",
+          "critical": false,
+          "hint": "Call \"Bail closed.\"",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 22,
+          "type": "ordered",
+          "step": "Place nozzle down + don SCBA face piece.",
+          "critical": false,
+          "hint": "Nozzle down, mask up.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 23,
+          "type": "inspection",
+          "step": "Ready for IDLH — all PPE on, SCBA bottle fully open + straps secured.",
+          "critical": true,
+          "hint": "PPE on, bottle full open, straps secure.",
+          "howto": {
+            "default": ""
+          },
+          "options": [
+            "All PPE on, bottle fully open, straps secured",
+            "Bottle not fully open",
+            "Straps not secured",
+            "Missing PPE"
+          ]
+        },
+        {
+          "order": 24,
+          "type": "inspection",
+          "step": "No skin exposed / no air leaks.",
+          "critical": true,
+          "hint": "No skin, no leaks, radio in breast pocket.",
+          "howto": {
+            "default": ""
+          },
+          "options": [
+            "No skin exposed, no air leaks, radio in breast pocket",
+            "Skin exposed",
+            "Air leak at the seal",
+            "Radio not in breast pocket"
+          ]
+        },
+        {
+          "order": 25,
+          "type": "ordered",
+          "step": "Bleed excess air + open valve; check front seat ready.",
+          "critical": false,
+          "hint": "Bleed air, open valve, check front seat.",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "rtoIntro": "Nozzle on the standpipe. Clamp, stretch, IDLH-ready. Any skin showing and you fail.",
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
+    },
+    {
+      "id": "roof_probe",
+      "name": "Roof Ops — Back Up / Probe Position",
+      "badgeName": "Roof Probe Badge",
+      "standardRef": "M.P. 1012.00",
+      "timeLimitSeconds": 180,
+      "variants": [
+        "default"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "Organize + collect equipment.",
+          "critical": false,
+          "hint": "Gather and organize your gear.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 2,
+          "type": "ordered",
+          "step": "Power saws in a ready state before carrying up.",
+          "critical": true,
+          "hint": "Saws ready before you carry them up.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 3,
+          "type": "inspection",
+          "step": "All PPE on, no skin exposed.",
+          "critical": true,
+          "hint": "Full PPE, no skin showing.",
+          "howto": {
+            "default": ""
+          },
+          "options": [
+            "All PPE on, no skin exposed",
+            "Skin exposed at neck",
+            "Skin exposed at wrists",
+            "Missing PPE item"
+          ]
+        },
+        {
+          "order": 4,
+          "type": "ordered",
+          "step": "Identify conditions approaching the structure; check eaves for truss dimension/spacing + sheeting.",
+          "critical": false,
+          "hint": "Read conditions, check eaves for truss and sheeting.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 5,
+          "type": "ordered",
+          "step": "Go on air before climbing.",
+          "critical": true,
+          "hint": "On air before you climb.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 6,
+          "type": "choice",
+          "step": "Verbalize ladder techniques, secondary egress, charged line.",
+          "critical": false,
+          "hint": "Call ladder technique, secondary egress, charged line.",
+          "howto": {
+            "default": ""
+          },
+          "options": [
+            "Ladder technique, secondary egress, charged line",
+            "Valve shut, clamp on, water coming",
+            "PPE on, on air, ready to cut",
+            "Truss spacing, sheeting, wind direction"
+          ]
+        },
+        {
+          "order": 7,
+          "type": "ordered",
+          "step": "Access roof safely — pike pole hung on rungs next to the beam on the step side; hang the axe blade on a rung above the roof line, right side next to the beam; probe roof before stepping; NEVER step on rungs above the roof line.",
+          "critical": true,
+          "hint": "Hang tools by the beam, probe first, never step above the roof line.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 8,
+          "type": "ordered",
+          "step": "Continue sounding the immediate area for the cut person.",
+          "critical": false,
+          "hint": "Keep sounding the area for the cutter.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 9,
+          "type": "ordered",
+          "step": "Rest pike pole on the ladder; hold the ladder for the cut person; signal ascend.",
+          "critical": false,
+          "hint": "Pike on the ladder, hold it, signal cutter up.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 10,
+          "type": "ordered",
+          "step": "Take the saw from the cut position.",
+          "critical": false,
+          "hint": "Take the saw from the cutter.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 11,
+          "type": "ordered",
+          "step": "Sound the roof along the safest route (bearing walls).",
+          "critical": false,
+          "hint": "Sound along bearing walls, safest route.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 12,
+          "type": "ordered",
+          "step": "Once the cut area is identified, sound 360° around it; mark an X.",
+          "critical": false,
+          "hint": "Sound 360 around the cut, mark an X.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 13,
+          "type": "ordered",
+          "step": "Hand the pike pole to Operations Oversight; both hands on the cut person; no tools in hand.",
+          "critical": false,
+          "hint": "Pass the pike, both hands on the cutter.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 14,
+          "type": "ordered",
+          "step": "After the vent hole is cut, receive the pike pole back.",
+          "critical": false,
+          "hint": "Take the pike back after the cut.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 15,
+          "type": "ordered",
+          "step": "Situational awareness of foot placement + unsafe pike pole practices.",
+          "critical": true,
+          "hint": "Watch foot placement and pike pole safety.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 16,
+          "type": "ordered",
+          "step": "Louvers on the correct side of the truss per wind; clear diving boards / excess roofing.",
+          "critical": false,
+          "hint": "Louver to the right side per wind, clear diving boards.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 17,
+          "type": "ordered",
+          "step": "Push ceiling material down with the pike pole.",
+          "critical": false,
+          "hint": "Punch the ceiling down with the pike.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 18,
+          "type": "ordered",
+          "step": "Probe back to the ladder; hang the pike pole on a rung on the opposite side.",
+          "critical": false,
+          "hint": "Probe back, hang the pike opposite side.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 19,
+          "type": "ordered",
+          "step": "Take the saw + steady the ladder for the cut person.",
+          "critical": false,
+          "hint": "Take the saw, steady the ladder for the cutter.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 20,
+          "type": "ordered",
+          "step": "Once the cut person is on the ground + butting the ladder, climb down with the axe, never stepping on rungs above the roof line.",
+          "critical": true,
+          "hint": "Cutter butts the ladder, climb down, never above the roof line.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 21,
+          "type": "ordered",
+          "step": "Remove the pike pole from the ladder.",
+          "critical": false,
+          "hint": "Pull the pike off the ladder.",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "rtoIntro": "Probe position, vertical vent. Sound before you step and stay off the rungs above the roof line.",
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
+    },
+    {
+      "id": "roof_cut",
+      "name": "Roof Ops — Cut Position",
+      "badgeName": "Roof Cut Badge",
+      "standardRef": "M.P. 1012.00",
+      "timeLimitSeconds": 180,
+      "variants": [
+        "default"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "Organize + collect equipment.",
+          "critical": false,
+          "hint": "Gather and organize your gear.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 2,
+          "type": "ordered",
+          "step": "Power saws ready before carrying up.",
+          "critical": true,
+          "hint": "Saws ready before you carry them up.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 3,
+          "type": "inspection",
+          "step": "All PPE on, no skin exposed.",
+          "critical": true,
+          "hint": "Full PPE, no skin showing.",
+          "howto": {
+            "default": ""
+          },
+          "options": [
+            "All PPE on, no skin exposed",
+            "Skin exposed at neck",
+            "Skin exposed at wrists",
+            "Missing PPE item"
+          ]
+        },
+        {
+          "order": 4,
+          "type": "ordered",
+          "step": "Identify conditions / eaves trusses + sheeting.",
+          "critical": false,
+          "hint": "Read conditions, check eaves trusses and sheeting.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 5,
+          "type": "ordered",
+          "step": "Butt the ladder for the probe person ascending.",
+          "critical": false,
+          "hint": "Butt the ladder for the probe person.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 6,
+          "type": "ordered",
+          "step": "Go on air before climbing.",
+          "critical": true,
+          "hint": "On air before you climb.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 7,
+          "type": "ordered",
+          "step": "Never step on rungs above the roof line.",
+          "critical": true,
+          "hint": "Never step above the roof line.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 8,
+          "type": "ordered",
+          "step": "Move tools to the roof safely; hand the saw to the probe person before stepping on the roof.",
+          "critical": false,
+          "hint": "Pass the saw to the probe before stepping on the roof.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 9,
+          "type": "ordered",
+          "step": "Follow directly behind the probe person to the cut area.",
+          "critical": false,
+          "hint": "Stay directly behind the probe person.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 10,
+          "type": "ordered",
+          "step": "Address the need for an inspection hole per conditions.",
+          "critical": false,
+          "hint": "Call inspection hole if conditions require.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 11,
+          "type": "ordered",
+          "step": "Set the saw down + pull-start in a safe area (and when adjusting the saw).",
+          "critical": false,
+          "hint": "Set down and pull-start the saw in a safe spot.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 12,
+          "type": "ordered",
+          "step": "Based on fire involvement, cut an adequately sized hole.",
+          "critical": false,
+          "hint": "Size the hole to the fire involvement.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 13,
+          "type": "ordered",
+          "step": "Cut the vent hole with proper sequence + depth.",
+          "critical": false,
+          "hint": "Proper cut sequence and depth.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 14,
+          "type": "ordered",
+          "step": "Situational awareness of foot placement / roof positions / probe person; maintain saw control; shut the saw down at the right time.",
+          "critical": true,
+          "hint": "Mind footing, the probe, saw control; shut down on time.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 15,
+          "type": "ordered",
+          "step": "Directly follow the probe person back to the ladder.",
+          "critical": false,
+          "hint": "Follow the probe person back to the ladder.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 16,
+          "type": "ordered",
+          "step": "Hand the saw to the probe person before stepping on the ladder; never step on a rung above the roof line.",
+          "critical": true,
+          "hint": "Pass the saw before the ladder, never above the roof line.",
+          "howto": {
+            "default": ""
+          }
+        },
+        {
+          "order": 17,
+          "type": "ordered",
+          "step": "Carry the saw down; butt the ladder for the probe person; assist with tools.",
+          "critical": false,
+          "hint": "Saw down, butt the ladder, help with tools.",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "rtoIntro": "Cut position. Saw ready before you climb, control it on the roof, shut it down at the right time.",
+      "rtoModePrompt": "How do you want to run this? DRILL to practice with no penalty, or GRADED for the timed badge run where a critical miss ends it.",
+      "videoUrl": ""
+    },
+    {
+      "id": "ladder_1",
+      "name": "Ladders — Type 1",
+      "badgeName": "Ladder Type 1 Badge",
+      "standardRef": "M.P. 1012.00",
+      "timeLimitSeconds": 180,
+      "variants": [
+        "default"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "(Placeholder — add the first graded step in the Studio.)",
+          "critical": false,
+          "hint": "",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "commonTail": [],
+      "rtoIntro": "",
+      "rtoModePrompt": "",
+      "videoUrl": ""
+    },
+    {
+      "id": "ladder_2",
+      "name": "Ladders — Type 2",
+      "badgeName": "Ladder Type 2 Badge",
+      "standardRef": "M.P. 1012.00",
+      "timeLimitSeconds": 180,
+      "variants": [
+        "default"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "(Placeholder — add the first graded step in the Studio.)",
+          "critical": false,
+          "hint": "",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "commonTail": [],
+      "rtoIntro": "",
+      "rtoModePrompt": "",
+      "videoUrl": ""
+    },
+    {
+      "id": "ladder_3",
+      "name": "Ladders — Type 3",
+      "badgeName": "Ladder Type 3 Badge",
+      "standardRef": "M.P. 1012.00",
+      "timeLimitSeconds": 180,
+      "variants": [
+        "default"
+      ],
+      "sharedSteps": [
+        {
+          "order": 1,
+          "type": "ordered",
+          "step": "(Placeholder — add the first graded step in the Studio.)",
+          "critical": false,
+          "hint": "",
+          "howto": {
+            "default": ""
+          }
+        }
+      ],
+      "commonTail": [],
+      "rtoIntro": "",
+      "rtoModePrompt": "",
+      "videoUrl": ""
+    }
+  ]
+}

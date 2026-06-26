@@ -1,0 +1,3768 @@
+{
+  "_legend": {
+    "tiles": {
+      "0": "ground (walkable)",
+      "1": "road (walkable)",
+      "2": "fence (blocked)",
+      "3": "building wall (blocked)",
+      "4": "pad floor (walkable)",
+      "5": "pad wall (blocked)"
+    },
+    "note": "Stepping on a gym door tile loads that gym's interior. To reassign a pad to a different skill, change that gym's eventId only. Layout matches the real PRTA aerial: HUB top-center, SCBA top-right, roof + ladders left, hydrants center/right."
+  },
+  "tileSize": 32,
+  "width": 32,
+  "height": 26,
+  "walkable": [
+    0,
+    1,
+    4
+  ],
+  "playerStart": {
+    "x": 16,
+    "y": 6
+  },
+  "hub": {
+    "id": "hub",
+    "label": "Academy HUB",
+    "door": {
+      "x": 16,
+      "y": 5
+    },
+    "building": {
+      "x0": 13,
+      "y0": 1,
+      "x1": 20,
+      "y1": 4
+    }
+  },
+  "gyms": [
+    {
+      "id": "gym_scba",
+      "eventId": "scba",
+      "label": "SCBA / Engine Bay",
+      "door": {
+        "x": 25,
+        "y": 4
+      },
+      "unlockIndex": 0,
+      "zone": "scba",
+      "padRect": {
+        "x0": 24,
+        "y0": 1,
+        "x1": 28,
+        "y1": 4
+      },
+      "interior": {
+        "_comment": "SCBA engine-bay interior. Tiles: 0 bay floor, 1 bay wall, 2 exit.",
+        "setting": "engine_bay",
+        "width": 11,
+        "height": 11,
+        "walkable": [
+          0,
+          2
+        ],
+        "tileset": {
+          "0": "bay_floor",
+          "1": "bay_wall",
+          "2": "exit"
+        },
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 9
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 10
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_scba",
+            "name": "Instructor Vega",
+            "tile": {
+              "x": 3,
+              "y": 6
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_engine",
+            "label": "Engine"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 3
+            },
+            "spriteKey": "prop_scba",
+            "label": "SCBA Bottle"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gym_qplug",
+      "eventId": "quick_attack_plug",
+      "label": "Hydrant 1 · Quick Attack Plug",
+      "door": {
+        "x": 13,
+        "y": 11
+      },
+      "unlockIndex": 1,
+      "zone": "hose",
+      "padRect": {
+        "x0": 12,
+        "y0": 8,
+        "x1": 15,
+        "y1": 11
+      },
+      "interior": {
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
+        "setting": "classroom",
+        "width": 11,
+        "height": 14,
+        "walkable": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
+        "grid": [
+          [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 12
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 13
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_quick_attack_plug",
+            "name": "Engineer Cole",
+            "tile": {
+              "x": 3,
+              "y": 9
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 3,
+              "y": 3
+            },
+            "spriteKey": "prop_engine",
+            "label": "Engine"
+          },
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_hydrant",
+            "label": "Hydrant"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gym_qnozzle",
+      "eventId": "quick_attack_nozzle",
+      "label": "Hydrant 2 · Quick Attack Nozzle",
+      "door": {
+        "x": 19,
+        "y": 11
+      },
+      "unlockIndex": 2,
+      "zone": "hose",
+      "padRect": {
+        "x0": 18,
+        "y0": 8,
+        "x1": 21,
+        "y1": 11
+      },
+      "interior": {
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
+        "setting": "classroom",
+        "width": 11,
+        "height": 14,
+        "walkable": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
+        "grid": [
+          [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 12
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 13
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_quick_attack_nozzle",
+            "name": "Engineer Diaz",
+            "tile": {
+              "x": 3,
+              "y": 9
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 3,
+              "y": 3
+            },
+            "spriteKey": "prop_engine",
+            "label": "Engine"
+          },
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_nozzle",
+            "label": "Nozzle"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gym_spfront",
+      "eventId": "standpipe_front",
+      "label": "Hydrant 3 · Standpipe Front",
+      "door": {
+        "x": 25,
+        "y": 11
+      },
+      "unlockIndex": 3,
+      "zone": "hose",
+      "padRect": {
+        "x0": 24,
+        "y0": 8,
+        "x1": 27,
+        "y1": 11
+      },
+      "interior": {
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
+        "setting": "classroom",
+        "width": 11,
+        "height": 14,
+        "walkable": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
+        "grid": [
+          [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 12
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 13
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_standpipe_front",
+            "name": "Captain Reyes",
+            "tile": {
+              "x": 3,
+              "y": 9
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 3,
+              "y": 3
+            },
+            "spriteKey": "prop_engine",
+            "label": "Engine"
+          },
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_standpipe",
+            "label": "Standpipe / Wye"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gym_spnozzle",
+      "eventId": "standpipe_nozzle",
+      "label": "Hydrant 4 · Standpipe Nozzle",
+      "door": {
+        "x": 19,
+        "y": 19
+      },
+      "unlockIndex": 4,
+      "zone": "hose",
+      "padRect": {
+        "x0": 18,
+        "y0": 16,
+        "x1": 21,
+        "y1": 19
+      },
+      "interior": {
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
+        "setting": "classroom",
+        "width": 11,
+        "height": 14,
+        "walkable": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
+        "grid": [
+          [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 12
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 13
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_standpipe_nozzle",
+            "name": "FF Okafor",
+            "tile": {
+              "x": 3,
+              "y": 9
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 3,
+              "y": 3
+            },
+            "spriteKey": "prop_standpipe",
+            "label": "Standpipe / Wye"
+          },
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_nozzle",
+            "label": "Nozzle"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gym_roofprobe",
+      "eventId": "roof_probe",
+      "label": "Roof · Probe",
+      "door": {
+        "x": 2,
+        "y": 4
+      },
+      "unlockIndex": 5,
+      "zone": "roof",
+      "padRect": {
+        "x0": 1,
+        "y0": 1,
+        "x1": 4,
+        "y1": 4
+      },
+      "interior": {
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
+        "setting": "classroom",
+        "width": 11,
+        "height": 14,
+        "walkable": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
+        "grid": [
+          [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 12
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 13
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_roof_probe",
+            "name": "Truckie Hahn",
+            "tile": {
+              "x": 3,
+              "y": 9
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 3,
+              "y": 3
+            },
+            "spriteKey": "prop_saw",
+            "label": "Vent Saw"
+          },
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_axe",
+            "label": "Axe"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gym_roofcut",
+      "eventId": "roof_cut",
+      "label": "Roof · Cut",
+      "door": {
+        "x": 7,
+        "y": 4
+      },
+      "unlockIndex": 6,
+      "zone": "roof",
+      "padRect": {
+        "x0": 6,
+        "y0": 1,
+        "x1": 9,
+        "y1": 4
+      },
+      "interior": {
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
+        "setting": "classroom",
+        "width": 11,
+        "height": 14,
+        "walkable": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
+        "grid": [
+          [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 12
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 13
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_roof_cut",
+            "name": "Truckie Park",
+            "tile": {
+              "x": 3,
+              "y": 9
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 3,
+              "y": 3
+            },
+            "spriteKey": "prop_saw",
+            "label": "Vent Saw"
+          },
+          {
+            "tile": {
+              "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_axe",
+            "label": "Axe"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gym_ladder1",
+      "eventId": "ladder_1",
+      "label": "Ladders · Type 1",
+      "door": {
+        "x": 2,
+        "y": 11
+      },
+      "unlockIndex": 7,
+      "zone": "ladders",
+      "padRect": {
+        "x0": 1,
+        "y0": 8,
+        "x1": 4,
+        "y1": 11
+      },
+      "interior": {
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
+        "setting": "classroom",
+        "width": 11,
+        "height": 14,
+        "walkable": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
+        "grid": [
+          [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 12
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 13
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_ladder_1",
+            "name": "Truckie Boyd",
+            "tile": {
+              "x": 3,
+              "y": 9
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gym_ladder2",
+      "eventId": "ladder_2",
+      "label": "Ladders · Type 2",
+      "door": {
+        "x": 7,
+        "y": 11
+      },
+      "unlockIndex": 8,
+      "zone": "ladders",
+      "padRect": {
+        "x0": 6,
+        "y0": 8,
+        "x1": 9,
+        "y1": 11
+      },
+      "interior": {
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
+        "setting": "classroom",
+        "width": 11,
+        "height": 14,
+        "walkable": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
+        "grid": [
+          [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 12
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 13
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_ladder_2",
+            "name": "Truckie Ruiz",
+            "tile": {
+              "x": 3,
+              "y": 9
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gym_ladder3",
+      "eventId": "ladder_3",
+      "label": "Ladders · Type 3",
+      "door": {
+        "x": 2,
+        "y": 19
+      },
+      "unlockIndex": 9,
+      "zone": "ladders",
+      "padRect": {
+        "x0": 1,
+        "y0": 16,
+        "x1": 4,
+        "y1": 19
+      },
+      "interior": {
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside.",
+        "setting": "classroom",
+        "width": 11,
+        "height": 14,
+        "walkable": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
+        "grid": [
+          [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "entryTile": {
+          "x": 5,
+          "y": 12
+        },
+        "exitTile": {
+          "x": 5,
+          "y": 13
+        },
+        "signage": {
+          "tile": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        "rto": {
+          "tile": {
+            "x": 5,
+            "y": 1
+          },
+          "spriteKey": "rto",
+          "name": "RTO Evaluator"
+        },
+        "studyNPCs": [
+          {
+            "id": "sn_ladder_3",
+            "name": "Truckie Shaw",
+            "tile": {
+              "x": 3,
+              "y": 9
+            },
+            "spriteKey": "npc",
+            "teaches": "all"
+          }
+        ],
+        "props": [
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
+          }
+        ]
+      }
+    }
+  ],
+  "npcs": [],
+  "wildNPCs": [
+    {
+      "id": "wild_1",
+      "spriteKey": "wild",
+      "patrol": [
+        {
+          "x": 11,
+          "y": 6
+        },
+        {
+          "x": 21,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "id": "wild_2",
+      "spriteKey": "wild",
+      "patrol": [
+        {
+          "x": 11,
+          "y": 14
+        },
+        {
+          "x": 28,
+          "y": 14
+        }
+      ]
+    },
+    {
+      "id": "wild_3",
+      "spriteKey": "wild",
+      "patrol": [
+        {
+          "x": 10,
+          "y": 7
+        },
+        {
+          "x": 10,
+          "y": 20
+        }
+      ]
+    },
+    {
+      "id": "wild_4",
+      "spriteKey": "wild",
+      "patrol": [
+        {
+          "x": 22,
+          "y": 7
+        },
+        {
+          "x": 22,
+          "y": 20
+        }
+      ]
+    }
+  ],
+  "grid": [
+    [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    [
+      2,
+      5,
+      5,
+      5,
+      5,
+      0,
+      5,
+      5,
+      5,
+      5,
+      1,
+      0,
+      0,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      0,
+      1,
+      0,
+      5,
+      5,
+      5,
+      5,
+      5,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      5,
+      4,
+      4,
+      5,
+      0,
+      5,
+      4,
+      4,
+      5,
+      1,
+      0,
+      0,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      0,
+      1,
+      0,
+      5,
+      4,
+      4,
+      4,
+      5,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      5,
+      4,
+      4,
+      5,
+      0,
+      5,
+      4,
+      4,
+      5,
+      1,
+      0,
+      0,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      0,
+      1,
+      0,
+      5,
+      4,
+      4,
+      4,
+      5,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      5,
+      4,
+      5,
+      5,
+      0,
+      5,
+      4,
+      5,
+      5,
+      1,
+      0,
+      0,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      0,
+      1,
+      0,
+      5,
+      4,
+      5,
+      5,
+      5,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      5,
+      5,
+      5,
+      5,
+      0,
+      5,
+      5,
+      5,
+      5,
+      1,
+      0,
+      5,
+      5,
+      5,
+      5,
+      0,
+      0,
+      5,
+      5,
+      5,
+      5,
+      1,
+      0,
+      5,
+      5,
+      5,
+      5,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      5,
+      4,
+      4,
+      5,
+      0,
+      5,
+      4,
+      4,
+      5,
+      1,
+      0,
+      5,
+      4,
+      4,
+      5,
+      0,
+      0,
+      5,
+      4,
+      4,
+      5,
+      1,
+      0,
+      5,
+      4,
+      4,
+      5,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      5,
+      4,
+      4,
+      5,
+      0,
+      5,
+      4,
+      4,
+      5,
+      1,
+      0,
+      5,
+      4,
+      4,
+      5,
+      0,
+      0,
+      5,
+      4,
+      4,
+      5,
+      1,
+      0,
+      5,
+      4,
+      4,
+      5,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      5,
+      4,
+      5,
+      5,
+      0,
+      5,
+      4,
+      5,
+      5,
+      1,
+      0,
+      5,
+      4,
+      5,
+      5,
+      0,
+      0,
+      5,
+      4,
+      5,
+      5,
+      1,
+      0,
+      5,
+      4,
+      5,
+      5,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      5,
+      5,
+      5,
+      5,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      5,
+      5,
+      5,
+      5,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      5,
+      4,
+      4,
+      5,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      5,
+      4,
+      4,
+      5,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      5,
+      4,
+      4,
+      5,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      5,
+      4,
+      4,
+      5,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      5,
+      4,
+      5,
+      5,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      5,
+      4,
+      5,
+      5,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
+  ]
+}

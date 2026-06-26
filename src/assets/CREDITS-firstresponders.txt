@@ -1,0 +1,5 @@
+First Responders sprite pack (firefighter / paramedic characters + firefighter
+tools) — supplied by the project owner. NO license file was included in the
+source archive. Before public distribution, confirm the pack's license and usage
+rights with its original author/source. Used here for: player, npc, rto, wild
+(characters) and the axe / saw / wrench / nozzle gym props.
