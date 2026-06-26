@@ -19,6 +19,7 @@
       "colors": {
         "bg": "#14213D",
         "bgDeep": "#0E182B",
+        "sky": "#7FB2DE",
         "panel": "#1B2C4F",
         "panelSolid": "#1B2C4F",
         "accent": "#FFC72C",
@@ -52,6 +53,7 @@
       "colors": {
         "bg": "#2B2B2B",
         "bgDeep": "#1E1E1E",
+        "sky": "#8FA0B0",
         "panel": "#3A3A3A",
         "panelSolid": "#3A3A3A",
         "accent": "#D7D7D7",

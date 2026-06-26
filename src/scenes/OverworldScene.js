@@ -32,7 +32,7 @@ export class OverworldScene extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, worldW, worldH);
     this.physics.world.setBounds(0, 0, worldW, worldH);
     this.cameras.main.startFollow(this.player, true, 0.15, 0.15);
-    this.cameras.main.setBackgroundColor(this.theme.hex('bgDeep'));
+    this.cameras.main.setBackgroundColor(this.theme.hex('sky'));
     this._applyDisplay();
 
     this.cursors = this.input.keyboard.createCursorKeys();
