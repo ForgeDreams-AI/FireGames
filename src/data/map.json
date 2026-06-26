@@ -52,13 +52,19 @@
       },
       "unlockIndex": 0,
       "interior": {
-        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "_comment": "SCBA engine-bay interior. Tiles: 0 bay floor, 1 bay wall, 2 exit. Re-theme via tileset; move objects by editing tile coords.",
+        "setting": "engine_bay",
         "width": 11,
-        "height": 9,
+        "height": 11,
         "walkable": [
           0,
           2
         ],
+        "tileset": {
+          "0": "bay_floor",
+          "1": "bay_wall",
+          "2": "exit"
+        },
         "grid": [
           [
             1,
@@ -71,6 +77,32 @@
             1,
             1,
             1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             1
           ],
           [
@@ -180,11 +212,11 @@
         ],
         "entryTile": {
           "x": 5,
-          "y": 7
+          "y": 9
         },
         "exitTile": {
           "x": 5,
-          "y": 8
+          "y": 10
         },
         "signage": {
           "tile": {
@@ -206,7 +238,7 @@
             "name": "Instructor Vega",
             "tile": {
               "x": 3,
-              "y": 5
+              "y": 6
             },
             "spriteKey": "npc",
             "teaches": "all"
@@ -216,6 +248,14 @@
           {
             "tile": {
               "x": 7,
+              "y": 3
+            },
+            "spriteKey": "prop_engine",
+            "label": "Engine"
+          },
+          {
+            "tile": {
+              "x": 3,
               "y": 3
             },
             "spriteKey": "prop_scba",
@@ -234,38 +274,114 @@
       "unlockIndex": 1,
       "label": "Quick Attack — Plug",
       "interior": {
-        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside. Re-theme via tileset.",
+        "setting": "classroom",
         "width": 11,
-        "height": 9,
+        "height": 14,
         "walkable": [
           0,
-          2
+          2,
+          3,
+          5
         ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
         "grid": [
           [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
           ],
           [
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
             1
           ],
           [
@@ -362,11 +478,11 @@
         ],
         "entryTile": {
           "x": 5,
-          "y": 7
+          "y": 12
         },
         "exitTile": {
           "x": 5,
-          "y": 8
+          "y": 13
         },
         "signage": {
           "tile": {
@@ -388,7 +504,7 @@
             "name": "Engineer Cole",
             "tile": {
               "x": 3,
-              "y": 5
+              "y": 9
             },
             "spriteKey": "npc",
             "teaches": "all"
@@ -397,7 +513,7 @@
         "props": [
           {
             "tile": {
-              "x": 7,
+              "x": 3,
               "y": 3
             },
             "spriteKey": "prop_engine",
@@ -405,11 +521,27 @@
           },
           {
             "tile": {
-              "x": 8,
-              "y": 5
+              "x": 7,
+              "y": 3
             },
             "spriteKey": "prop_hydrant",
             "label": "Hydrant"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
           }
         ]
       }
@@ -424,38 +556,114 @@
       "unlockIndex": 2,
       "label": "Quick Attack — Nozzle",
       "interior": {
-        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside. Re-theme via tileset.",
+        "setting": "classroom",
         "width": 11,
-        "height": 9,
+        "height": 14,
         "walkable": [
           0,
-          2
+          2,
+          3,
+          5
         ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
         "grid": [
           [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
           ],
           [
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
             1
           ],
           [
@@ -552,11 +760,11 @@
         ],
         "entryTile": {
           "x": 5,
-          "y": 7
+          "y": 12
         },
         "exitTile": {
           "x": 5,
-          "y": 8
+          "y": 13
         },
         "signage": {
           "tile": {
@@ -578,7 +786,7 @@
             "name": "Engineer Diaz",
             "tile": {
               "x": 3,
-              "y": 5
+              "y": 9
             },
             "spriteKey": "npc",
             "teaches": "all"
@@ -587,7 +795,7 @@
         "props": [
           {
             "tile": {
-              "x": 7,
+              "x": 3,
               "y": 3
             },
             "spriteKey": "prop_engine",
@@ -595,11 +803,27 @@
           },
           {
             "tile": {
-              "x": 8,
-              "y": 5
+              "x": 7,
+              "y": 3
             },
             "spriteKey": "prop_nozzle",
             "label": "Nozzle"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
           }
         ]
       }
@@ -614,38 +838,114 @@
       "unlockIndex": 3,
       "label": "Standpipe — Front Seat",
       "interior": {
-        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside. Re-theme via tileset.",
+        "setting": "classroom",
         "width": 11,
-        "height": 9,
+        "height": 14,
         "walkable": [
           0,
-          2
+          2,
+          3,
+          5
         ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
         "grid": [
           [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
           ],
           [
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
             1
           ],
           [
@@ -742,11 +1042,11 @@
         ],
         "entryTile": {
           "x": 5,
-          "y": 7
+          "y": 12
         },
         "exitTile": {
           "x": 5,
-          "y": 8
+          "y": 13
         },
         "signage": {
           "tile": {
@@ -768,7 +1068,7 @@
             "name": "Captain Reyes",
             "tile": {
               "x": 3,
-              "y": 5
+              "y": 9
             },
             "spriteKey": "npc",
             "teaches": "all"
@@ -777,7 +1077,7 @@
         "props": [
           {
             "tile": {
-              "x": 7,
+              "x": 3,
               "y": 3
             },
             "spriteKey": "prop_engine",
@@ -785,11 +1085,27 @@
           },
           {
             "tile": {
-              "x": 8,
-              "y": 5
+              "x": 7,
+              "y": 3
             },
             "spriteKey": "prop_nozzle",
             "label": "Nozzle"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
           }
         ]
       }
@@ -804,38 +1120,114 @@
       "unlockIndex": 4,
       "label": "Standpipe — Nozzle",
       "interior": {
-        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside. Re-theme via tileset.",
+        "setting": "classroom",
         "width": 11,
-        "height": 9,
+        "height": 14,
         "walkable": [
           0,
-          2
+          2,
+          3,
+          5
         ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
         "grid": [
           [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
           ],
           [
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
             1
           ],
           [
@@ -932,11 +1324,11 @@
         ],
         "entryTile": {
           "x": 5,
-          "y": 7
+          "y": 12
         },
         "exitTile": {
           "x": 5,
-          "y": 8
+          "y": 13
         },
         "signage": {
           "tile": {
@@ -958,7 +1350,7 @@
             "name": "FF Okafor",
             "tile": {
               "x": 3,
-              "y": 5
+              "y": 9
             },
             "spriteKey": "npc",
             "teaches": "all"
@@ -967,7 +1359,7 @@
         "props": [
           {
             "tile": {
-              "x": 7,
+              "x": 3,
               "y": 3
             },
             "spriteKey": "prop_engine",
@@ -975,11 +1367,27 @@
           },
           {
             "tile": {
-              "x": 8,
-              "y": 5
+              "x": 7,
+              "y": 3
             },
             "spriteKey": "prop_nozzle",
             "label": "Nozzle"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
           }
         ]
       }
@@ -994,38 +1402,114 @@
       "unlockIndex": 5,
       "label": "Roof Ops — Probe",
       "interior": {
-        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside. Re-theme via tileset.",
+        "setting": "classroom",
         "width": 11,
-        "height": 9,
+        "height": 14,
         "walkable": [
           0,
-          2
+          2,
+          3,
+          5
         ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
         "grid": [
           [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
           ],
           [
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
             1
           ],
           [
@@ -1122,11 +1606,11 @@
         ],
         "entryTile": {
           "x": 5,
-          "y": 7
+          "y": 12
         },
         "exitTile": {
           "x": 5,
-          "y": 8
+          "y": 13
         },
         "signage": {
           "tile": {
@@ -1148,7 +1632,7 @@
             "name": "Truckie Hahn",
             "tile": {
               "x": 3,
-              "y": 5
+              "y": 9
             },
             "spriteKey": "npc",
             "teaches": "all"
@@ -1157,7 +1641,7 @@
         "props": [
           {
             "tile": {
-              "x": 7,
+              "x": 3,
               "y": 3
             },
             "spriteKey": "prop_saw",
@@ -1165,11 +1649,27 @@
           },
           {
             "tile": {
-              "x": 8,
-              "y": 5
+              "x": 7,
+              "y": 3
             },
             "spriteKey": "prop_axe",
             "label": "Axe"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
           }
         ]
       }
@@ -1184,38 +1684,114 @@
       "unlockIndex": 6,
       "label": "Roof Ops — Cut",
       "interior": {
-        "_comment": "Interior room for this gym. Tiles: 0 floor, 1 wall, 2 exit. Move the rto/studyNPCs/props/signage/entry by editing tile coords. spriteKey maps to /src/assets/manifest.json.",
+        "_comment": "Classroom (study) opening to an outdoor fireground (RTO). Tiles: 0 classroom floor, 1 wall, 2 exit, 3 outdoor pad, 4 outdoor edge, 5 doorway to outside. Re-theme via tileset.",
+        "setting": "classroom",
         "width": 11,
-        "height": 9,
+        "height": 14,
         "walkable": [
           0,
-          2
+          2,
+          3,
+          5
         ],
+        "tileset": {
+          "0": "class_floor",
+          "1": "class_wall",
+          "2": "exit",
+          "3": "pad",
+          "4": "padwall",
+          "5": "baydoor"
+        },
         "grid": [
           [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
+          ],
+          [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            4
           ],
           [
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
+            1,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
             1
           ],
           [
@@ -1312,11 +1888,11 @@
         ],
         "entryTile": {
           "x": 5,
-          "y": 7
+          "y": 12
         },
         "exitTile": {
           "x": 5,
-          "y": 8
+          "y": 13
         },
         "signage": {
           "tile": {
@@ -1338,7 +1914,7 @@
             "name": "Truckie Park",
             "tile": {
               "x": 3,
-              "y": 5
+              "y": 9
             },
             "spriteKey": "npc",
             "teaches": "all"
@@ -1347,7 +1923,7 @@
         "props": [
           {
             "tile": {
-              "x": 7,
+              "x": 3,
               "y": 3
             },
             "spriteKey": "prop_saw",
@@ -1355,11 +1931,27 @@
           },
           {
             "tile": {
-              "x": 8,
-              "y": 5
+              "x": 7,
+              "y": 3
             },
             "spriteKey": "prop_axe",
             "label": "Axe"
+          },
+          {
+            "tile": {
+              "x": 8,
+              "y": 7
+            },
+            "spriteKey": "whiteboard",
+            "label": "Whiteboard"
+          },
+          {
+            "tile": {
+              "x": 3,
+              "y": 11
+            },
+            "spriteKey": "desk",
+            "label": "Desk"
           }
         ]
       }

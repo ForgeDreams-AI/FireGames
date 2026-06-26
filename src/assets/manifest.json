@@ -10,7 +10,12 @@
     "door":     { "file": "",                    "shape": "doormark", "colorKey": "door" },
     "ifloor":   { "file": "tiles/concrete.png",  "shape": "tile", "colorKey": "pad" },
     "iwall":    { "file": "tiles/wall.png",      "shape": "tile", "colorKey": "padWall", "border": true },
-    "exit":     { "file": "",                    "shape": "doormark", "colorKey": "door" }
+    "exit":     { "file": "",                    "shape": "doormark", "colorKey": "door" },
+    "class_floor": { "file": "tiles/class_floor.png", "shape": "tile", "colorKey": "pad" },
+    "class_wall":  { "file": "tiles/class_wall.png",  "shape": "tile", "colorKey": "building", "border": true },
+    "bay_floor":   { "file": "tiles/bay_floor.png",   "shape": "tile", "colorKey": "pad" },
+    "bay_wall":    { "file": "tiles/bay_wall.png",    "shape": "tile", "colorKey": "padWall", "border": true },
+    "baydoor":     { "file": "tiles/baydoor.png",     "shape": "doormark", "colorKey": "sage" }
   },
   "sprites": {
     "player": { "file": "sprites/player.png", "shape": "actor", "colorKey": "player", "w": 28, "h": 28, "label": "R" },
@@ -18,6 +23,8 @@
     "npc":    { "file": "sprites/npc.png",    "shape": "actor", "colorKey": "npc", "w": 26, "h": 26, "label": "?" },
     "wild":   { "file": "sprites/wild.png",   "shape": "actor", "colorKey": "wild", "w": 24, "h": 24, "label": "!" },
     "signage": { "file": "sprites/sign.png",  "shape": "actor", "colorKey": "warn", "w": 28, "h": 28, "label": "i" },
+    "whiteboard": { "file": "sprites/whiteboard.png", "shape": "actor", "colorKey": "cream", "w": 30, "h": 20 },
+    "desk":       { "file": "sprites/desk.png", "shape": "actor", "colorKey": "building", "w": 28, "h": 20 },
     "prop_scba":      { "file": "sprites/bottle.png", "shape": "actor", "colorKey": "accent", "w": 26, "h": 32 },
     "prop_engine":    { "file": "sprites/firetruck.png", "shape": "actor", "colorKey": "building", "w": 32, "h": 32 },
     "prop_nozzle":    { "file": "sprites/nozzle.png", "shape": "actor", "colorKey": "bad", "w": 30, "h": 26 },

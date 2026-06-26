@@ -7,7 +7,8 @@
 
 import { bfsPath, bfsAdjacent } from '../engine/Pathfinder.js';
 
-const ITILE = { 0: 'ifloor', 1: 'iwall', 2: 'exit' };
+// Fallback code->key map for interiors that don't declare their own tileset.
+const DEFAULT_TILESET = { 0: 'ifloor', 1: 'iwall', 2: 'exit' };
 
 export class InteriorScene extends Phaser.Scene {
   constructor() { super('Interior'); }
@@ -59,10 +60,12 @@ export class InteriorScene extends Phaser.Scene {
 
   _drawRoom() {
     const g = this.room.grid;
+    const tileset = this.room.tileset || DEFAULT_TILESET;
+    const base = tileset[0] || 'ifloor';
     for (let y = 0; y < this.room.height; y++) {
       for (let x = 0; x < this.room.width; x++) {
-        if (g[y][x] !== 0) this._tileImg(x, y, 'ifloor');
-        this._tileImg(x, y, ITILE[g[y][x]] || 'ifloor');
+        const key = tileset[g[y][x]] || base;
+        this._tileImg(x, y, key);
       }
     }
   }
